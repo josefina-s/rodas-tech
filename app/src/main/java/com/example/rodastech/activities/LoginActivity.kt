@@ -1,10 +1,11 @@
-package com.example.rodastech
+package com.example.rodastech.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.example.rodastech.R
 
 class LoginActivity : AppCompatActivity() {
 
@@ -26,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         btnSubmit.setOnClickListener {
 
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }

@@ -3,21 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navgraph"
-    app:startDestination="@id/splashActivity">
+    app:startDestination="@id/listClothFragment">
 
     <activity
         android:id="@+id/splashActivity"
-        android:name="com.example.rodastech.SplashActivity"
+        android:name="com.example.rodastech.activities.SplashActivity"
         android:label="activity_splash"
         tools:layout="@layout/activity_splash" />
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.rodastech.MainActivity"
+        android:name="com.example.rodastech.activities.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.example.rodastech.LoginActivity"
+        android:name="com.example.rodastech.activities.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/listClothFragment"
+        android:name="com.example.rodastech.fragments.ListClothFragment"
+        android:label="fragment_list_cloth"
+        tools:layout="@layout/fragment_list_cloth" >
+        <action
+            android:id="@+id/action_listClothFragment_to_detailClothFragment"
+            app:destination="@id/detailClothFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailClothFragment"
+        android:name="com.example.rodastech.fragments.DetailClothFragment"
+        android:label="fragment_detail_cloth"
+        tools:layout="@layout/fragment_detail_cloth" >
+        <argument
+            android:name="cloth"
+            app:argType="com.example.rodastech.entities.Cloth" />
+    </fragment>
+    <fragment
+        android:id="@+id/providerFragment"
+        android:name="com.example.rodastech.fragments.ProviderFragment"
+        android:label="fragment_provider"
+        tools:layout="@layout/fragment_provider" />
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.example.rodastech.fragments.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" />
+    <fragment
+        android:id="@+id/salesFragment"
+        android:name="com.example.rodastech.fragments.SalesFragment"
+        android:label="fragment_sales"
+        tools:layout="@layout/fragment_sales" />
 </navigation>

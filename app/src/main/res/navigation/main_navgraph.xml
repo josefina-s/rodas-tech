@@ -28,6 +28,15 @@
         <action
             android:id="@+id/action_listClothFragment_to_detailClothFragment"
             app:destination="@id/detailClothFragment" />
+        <action
+            android:id="@+id/action_listClothFragment_to_editClothFragment"
+            app:destination="@id/editClothFragment" />
+        <action
+            android:id="@+id/action_listClothFragment_to_createClothFragment4"
+            app:destination="@id/createClothFragment" />
+        <action
+            android:id="@+id/action_listClothFragment_to_deleteClothFragment"
+            app:destination="@id/deleteClothFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailClothFragment"
@@ -53,4 +62,89 @@
         android:name="com.example.rodastech.fragments.SalesFragment"
         android:label="fragment_sales"
         tools:layout="@layout/fragment_sales" />
+    <fragment
+        android:id="@+id/editClothFragment"
+        android:name="com.example.rodastech.fragments.EditClothFragment"
+        android:label="fragment_edit_cloth"
+        tools:layout="@layout/fragment_edit_cloth" >
+        <argument
+            android:name="cloth"
+            app:argType="com.example.rodastech.entities.Cloth" />
+    </fragment>
+    <fragment
+        android:id="@+id/createClothFragment"
+        android:name="com.example.rodastech.fragments.CreateClothFragment"
+        android:label="fragment_create_cloth"
+        tools:layout="@layout/fragment_create_cloth" >
+        <argument
+            android:name="clothArray"
+            app:argType="com.example.rodastech.entities.Cloth[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteClothFragment"
+        android:name="com.example.rodastech.fragments.DeleteClothFragment"
+        android:label="fragment_delete_cloth"
+        tools:layout="@layout/fragment_delete_cloth" >
+        <argument
+            android:name="cloth"
+            app:argType="com.example.rodastech.entities.Cloth" />
+        <argument
+            android:name="clothArray"
+            app:argType="com.example.rodastech.entities.Cloth[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailProviderFragment"
+        android:name="com.example.rodastech.fragments.DetailProviderFragment"
+        android:label="fragment_detail_provider"
+        tools:layout="@layout/fragment_detail_provider" />
+    <fragment
+        android:id="@+id/createProviderFragment"
+        android:name="com.example.rodastech.fragments.CreateProviderFragment"
+        android:label="fragment_create_provider"
+        tools:layout="@layout/fragment_create_provider" />
+    <fragment
+        android:id="@+id/editProviderFragment"
+        android:name="com.example.rodastech.fragments.EditProviderFragment"
+        android:label="fragment_edit_provider"
+        tools:layout="@layout/fragment_edit_provider" />
+    <fragment
+        android:id="@+id/detailReportFragment"
+        android:name="com.example.rodastech.fragments.DetailReportFragment"
+        android:label="fragment_detail_report"
+        tools:layout="@layout/fragment_detail_report" />
+    <fragment
+        android:id="@+id/addItemSaleFragment"
+        android:name="com.example.rodastech.fragments.AddItemSaleFragment"
+        android:label="fragment_add_item_sale"
+        tools:layout="@layout/fragment_add_item_sale" />
+    <fragment
+        android:id="@+id/outOfStockItemSaleFragment"
+        android:name="com.example.rodastech.fragments.OutOfStockItemSaleFragment"
+        android:label="fragment_out_of_stock_item_sale"
+        tools:layout="@layout/fragment_out_of_stock_item_sale" />
+    <fragment
+        android:id="@+id/addedItemSaleFragment"
+        android:name="com.example.rodastech.fragments.AddedItemSaleFragment"
+        android:label="fragment_added_item_sale"
+        tools:layout="@layout/fragment_added_item_sale" />
+    <fragment
+        android:id="@+id/succesfullOrderSaleFragment"
+        android:name="com.example.rodastech.fragments.SuccesfullOrderSaleFragment"
+        android:label="fragment_succesfull_order_sale"
+        tools:layout="@layout/fragment_succesfull_order_sale" />
+    <fragment
+        android:id="@+id/showOrderSaleFragment"
+        android:name="com.example.rodastech.fragments.ShowOrderSaleFragment"
+        android:label="fragment_show_order_sale"
+        tools:layout="@layout/fragment_show_order_sale" />
+    <fragment
+        android:id="@+id/listOrderFragment"
+        android:name="com.example.rodastech.fragments.ListOrderFragment"
+        android:label="fragment_list_order"
+        tools:layout="@layout/fragment_list_order" />
+    <fragment
+        android:id="@+id/failedOrderSaleFragment"
+        android:name="com.example.rodastech.fragments.FailedOrderSaleFragment"
+        android:label="fragment_failed_order_sale"
+        tools:layout="@layout/fragment_failed_order_sale" />
 </navigation>

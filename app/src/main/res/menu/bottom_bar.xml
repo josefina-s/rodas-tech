@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/listClothFragment"
+        android:icon="@drawable/home_icon"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/providerFragment"
+        android:icon="@drawable/badge_icon"
+        android:title="Proveedor" />
+
+    <item
+        android:id="@+id/reportFragment"
+        android:icon="@drawable/stats"
+        android:title="Reportes" />
+
+    <item
+        android:id="@+id/salesFragment"
+        android:icon="@drawable/sell_icon"
+        android:title="Ventas" />
+
+</menu>

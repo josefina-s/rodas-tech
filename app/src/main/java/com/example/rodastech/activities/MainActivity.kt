@@ -6,7 +6,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.rodastech.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavView : BottomNavigationView
@@ -20,3 +21,4 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
     }
 }
+

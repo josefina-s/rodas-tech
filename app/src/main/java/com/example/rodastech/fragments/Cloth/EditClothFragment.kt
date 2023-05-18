@@ -8,63 +8,54 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
 import com.example.rodastech.R
+import com.example.rodastech.databinding.FragmentDetailClothBinding
+import com.example.rodastech.databinding.FragmentEditClothBinding
 //import com.example.rodastech.fragments.EditClothFragmentArgs
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 class EditClothFragment : Fragment() {
-    lateinit var v : View
-    lateinit var txtName : TextView
-    lateinit var txtMeters : TextView
-    lateinit var txtPrice : TextView
-    lateinit var btnSave : Button
-
-
+    private val viewModel: EditClothViewModel by viewModels()
+    private lateinit var binding: FragmentEditClothBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v= inflater.inflate(R.layout.fragment_edit_cloth, container, false)
-        txtName=v.findViewById(R.id.editTextClothName)
-        txtMeters=v.findViewById(R.id.editTextClothMeters)
-        txtPrice=v.findViewById(R.id.editTextClothPrice)
-        btnSave=v.findViewById(R.id.btnSave)
-        return v
+
+        binding=FragmentEditClothBinding.inflate(inflater,container,false)
+        return binding.root
     }
-
-
 
     override fun onStart() {
         super.onStart()
         val args= EditClothFragmentArgs.fromBundle(requireArguments()).cloth
-        txtName.text=args.name
-        txtMeters.text=args.meters
-        txtPrice.text= args.price.toString()
+        binding.txtEditClothName.setText(args.name)
+        binding.txtEditClothDesc.setText(args.description)
+        binding.txtEditClothColor.setText(args.color)
+        binding.txtEditClothWidth.setText(args.width.toString())
+        binding.txtEditClothLong.setText(args.long.toString())
+        binding.txtEditClothProvider.setText(args.provider)
+        binding.txtEditClothStock.setText(args.stockActual.toString())
 
 
-        btnSave.setOnClickListener(){
-            //AGREGAR VALIDACIONES PARA VER SI LA MODIFICACION ES EXITOSA O NO --mheredia 20230430
-            args.name=txtName.text.toString()
-            args.meters=txtMeters.text.toString()
-            args.price= Integer.parseInt(txtPrice.text.toString())
-            val snackBar= Snackbar.make(v,"Modificación exitosa", Snackbar.LENGTH_SHORT)
-            snackBar.view.setBackgroundColor(Color.parseColor("#57E049"))
-            snackBar.show()
+        binding.btnSave.setOnClickListener(){
+            viewModel.viewModelScope.launch{
+                args.name=binding.txtEditClothName.text.toString()
+                args.description=binding.txtEditClothDesc.text.toString()
+                args.color=binding.txtEditClothColor.text.toString()
+                args.width=Integer.parseInt(binding.txtEditClothWidth.text.toString())
+                args.long=Integer.parseInt(binding.txtEditClothLong.text.toString())
+                args.provider=binding.txtEditClothProvider.text.toString()
+                args.stockActual=Integer.parseInt(binding.txtEditClothStock.text.toString())
+                viewModel.updateCloth(args)
+            }
         }
 
 
     }
 
-
-//    companion object {
-//        fun newInstance() = EditClothFragment()
-//    }
-//
-//    private lateinit var viewModel: EditClothViewModel
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(EditClothViewModel::class.java)
-//        // TODO: Use the ViewModel
-//    }
 }

@@ -1,5 +1,6 @@
 package com.example.rodastech.fragments.Cloth
 
+import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,17 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import com.example.rodastech.R
+import com.example.rodastech.databinding.FragmentCreateClothBinding
+import com.example.rodastech.databinding.FragmentDeleteClothBinding
 //import com.example.rodastech.fragments.DeleteClothFragmentArgs
 import com.google.android.material.snackbar.Snackbar
 
 class DeleteClothFragment : Fragment() {
 
-    lateinit var v : View
-    lateinit var txtName : TextView
-    lateinit var txtMeters : TextView
-    lateinit var txtPrice : TextView
-    lateinit var btnDelete : Button
+    private val viewModel: DeleteClothViewModel by viewModels()
+    private lateinit var binding: FragmentDeleteClothBinding
+    private lateinit var builder: AlertDialog.Builder
 
 
 
@@ -26,50 +28,22 @@ class DeleteClothFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v=inflater.inflate(R.layout.fragment_delete_cloth, container, false)
-        txtName=v.findViewById(R.id.deleteTextName)
-        txtMeters=v.findViewById(R.id.deleteTextMeters)
-        txtPrice=v.findViewById(R.id.deleteTextPrice)
-        btnDelete=v.findViewById(R.id.btnDelete)
-        return  v
+        builder=AlertDialog.Builder(activity)
+        binding=FragmentDeleteClothBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
 
 
     override fun onStart() {
         super.onStart()
-        val cloth= DeleteClothFragmentArgs.fromBundle(requireArguments()).cloth
-        val args= DeleteClothFragmentArgs.fromBundle(requireArguments()).clothArray.toMutableList()
-        txtName.text=cloth.name
-        txtMeters.text=cloth.meters
-        txtPrice.text= cloth.price.toString()
-
-
-        btnDelete.setOnClickListener(){
-            //AGREGAR VALIDACIONES PARA VER SI LA ELIMINACION ES EXITOSA O NO --mheredia 20230430
-            args.removeAt(cloth.id-1)
-            val snackBar= Snackbar.make(v,"ELIMINACIÓN exitosa", Snackbar.LENGTH_SHORT)
-            snackBar.view.setBackgroundColor(Color.parseColor("#57E049"))
-            snackBar.show()
-        }
+//
+//        btnDelete.setOnClickListener(){
+//
+//        }
 
 
     }
 
-
-
-
-
-//    companion object {
-//        fun newInstance() = DeleteClothFragment()
-//    }
-//
-//    private lateinit var viewModel: DeleteClothViewModel
-//
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(DeleteClothViewModel::class.java)
-//        // TODO: Use the ViewModel
-//    }
 
 }

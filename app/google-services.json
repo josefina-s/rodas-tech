@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "839521581121",
+    "project_id": "rodas-tech-app",
+    "storage_bucket": "rodas-tech-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839521581121:android:e281d4a8a2cd50c29b2ec0",
+        "android_client_info": {
+          "package_name": "com.example.rodastech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839521581121-0t3mqlg9r5o46ii4hab5c4ms1kjakm36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCy1WwduzrQKl654B8oX3rk3AGZ3h42U54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839521581121-0t3mqlg9r5o46ii4hab5c4ms1kjakm36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

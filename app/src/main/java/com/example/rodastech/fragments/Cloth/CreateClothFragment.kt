@@ -8,75 +8,52 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.example.rodastech.R
+import com.example.rodastech.adapters.ClothAdapter
+import com.example.rodastech.databinding.FragmentCreateClothBinding
+import com.example.rodastech.databinding.FragmentEditClothBinding
 import com.example.rodastech.entities.Cloth
 //import com.example.rodastech.fragments.CreateClothFragmentArgs
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
+import java.util.*
 
 class CreateClothFragment : Fragment() {
-    lateinit var v : View
-    lateinit var txtName : EditText
-    lateinit var txtMeters : EditText
-    lateinit var txtPrice : EditText
-    lateinit var inputName : String
-    lateinit var inputMeters : String
-    var inputPrice : Int = 0
-    lateinit var btnCreate : Button
-
-//    lateinit var adapter : ClothAdapter
-//    var clothRepository : ClothRepository = ClothRepository()
-
+    private val viewModel: CreateClothViewModel by viewModels()
+    private lateinit var binding: FragmentCreateClothBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v= inflater.inflate(R.layout.fragment_create_cloth, container, false)
-        txtName=v.findViewById(R.id.createTextName)
-        txtMeters=v.findViewById(R.id.createTextMeters)
-        txtPrice=v.findViewById(R.id.createTextPrice)
-        btnCreate=v.findViewById(R.id.btnCreate)
-
-        return v
+        binding=FragmentCreateClothBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onStart() {
         super.onStart()
 
-        btnCreate.setOnClickListener(){
-            //AGREGAR VALIDACIONES PARA VER SI LA CREACION ES EXITOSA O NO --mheredia 20230430
-            val args= CreateClothFragmentArgs.fromBundle(requireArguments()).clothArray.toMutableList()
-
-            inputName=txtName.text.toString()
-            inputMeters=txtMeters.text.toString()
-            inputPrice= Integer.parseInt(txtPrice.text.toString())
-            val i=args.lastIndex+2
-            args.add(Cloth(i, inputName,inputMeters,inputPrice))
-            val snackBar= Snackbar.make(v,"Creacion exitosa", Snackbar.LENGTH_SHORT)
-            snackBar.view.setBackgroundColor(Color.parseColor("#57E049"))
-            snackBar.show()
-
-//            adapter = ClothAdapter(args){
-//                adapter.notifyItemInserted(i)
-//                adapter.notifyDataSetChanged()
-//            }
-//            adapter.notifyItemInserted(i)
-//            adapter.notifyDataSetChanged()
+        binding.btnCreateClothSave.setOnClickListener(){
+            viewModel.viewModelScope.launch {
+                val myUuid = UUID.randomUUID()
+                val myUuidAsString = myUuid.toString()
+                viewModel.insertCloth(Cloth(myUuidAsString,
+                    binding.txtCreateClothName.text.toString(),
+                    binding.txtCreateClothDesc.text.toString(),
+                    binding.txtCreateClothProvider.text.toString(),
+                    binding.txtCreateClothColor.text.toString(),
+                    Integer.parseInt(binding.txtCreateClothWidth.text.toString()),
+                    Integer.parseInt(binding.txtCreateClothLong.text.toString()),
+                    Integer.parseInt(binding.txtCreateClothInitialStock.text.toString())
+                ))
+            }
         }
-
-
     }
 
-//    companion object {
-//        fun newInstance() = CreateClothFragment()
-//    }
-//
-//    private lateinit var viewModel: CreateClothViewModel
-//
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(CreateClothViewModel::class.java)
-//        // TODO: Use the ViewModel
-//    }
+
 
 }

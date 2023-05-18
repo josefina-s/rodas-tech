@@ -29,14 +29,8 @@
             android:id="@+id/action_listClothFragment_to_detailClothFragment"
             app:destination="@id/detailClothFragment" />
         <action
-            android:id="@+id/action_listClothFragment_to_editClothFragment"
-            app:destination="@id/editClothFragment" />
-        <action
-            android:id="@+id/action_listClothFragment_to_createClothFragment4"
+            android:id="@+id/action_listClothFragment_to_createClothFragment"
             app:destination="@id/createClothFragment" />
-        <action
-            android:id="@+id/action_listClothFragment_to_deleteClothFragment"
-            app:destination="@id/deleteClothFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailClothFragment"
@@ -46,6 +40,12 @@
         <argument
             android:name="cloth"
             app:argType="com.example.rodastech.entities.Cloth" />
+        <action
+            android:id="@+id/action_detailClothFragment_to_editClothFragment"
+            app:destination="@id/editClothFragment" />
+        <action
+            android:id="@+id/action_detailClothFragment_to_deleteClothFragment"
+            app:destination="@id/deleteClothFragment" />
     </fragment>
     <fragment
         android:id="@+id/clientFragment"
@@ -75,11 +75,7 @@
         android:id="@+id/createClothFragment"
         android:name="com.example.rodastech.fragments.Cloth.CreateClothFragment"
         android:label="fragment_create_cloth"
-        tools:layout="@layout/fragment_create_cloth" >
-        <argument
-            android:name="clothArray"
-            app:argType="com.example.rodastech.entities.Cloth[]" />
-    </fragment>
+        tools:layout="@layout/fragment_create_cloth" />
     <fragment
         android:id="@+id/deleteClothFragment"
         android:name="com.example.rodastech.fragments.Cloth.DeleteClothFragment"
@@ -88,9 +84,6 @@
         <argument
             android:name="cloth"
             app:argType="com.example.rodastech.entities.Cloth" />
-        <argument
-            android:name="clothArray"
-            app:argType="com.example.rodastech.entities.Cloth[]" />
     </fragment>
     <fragment
         android:id="@+id/detailClientFragment"

@@ -51,7 +51,14 @@
         android:id="@+id/clientFragment"
         android:name="com.example.rodastech.fragments.Client.ClientFragment"
         android:label="fragment_provider"
-        tools:layout="@layout/fragment_client" />
+        tools:layout="@layout/fragment_client" >
+        <action
+            android:id="@+id/action_clientFragment_to_createClientFragment"
+            app:destination="@id/createClientFragment" />
+        <action
+            android:id="@+id/action_clientFragment_to_detailClientFragment"
+            app:destination="@id/detailClientFragment" />
+    </fragment>
     <fragment
         android:id="@+id/reportFragment"
         android:name="com.example.rodastech.fragments.Report.ReportFragment"
@@ -89,7 +96,14 @@
         android:id="@+id/detailClientFragment"
         android:name="com.example.rodastech.fragments.Client.DetailClientFragment"
         android:label="fragment_detail_provider"
-        tools:layout="@layout/fragment_detail_client" />
+        tools:layout="@layout/fragment_detail_client" >
+        <argument
+            android:name="client"
+            app:argType="com.example.rodastech.entities.Client" />
+        <action
+            android:id="@+id/action_detailClientFragment_to_editClientFragment"
+            app:destination="@id/editClientFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createClientFragment"
         android:name="com.example.rodastech.fragments.Client.CreateClientFragment"
@@ -99,7 +113,11 @@
         android:id="@+id/editClientFragment"
         android:name="com.example.rodastech.fragments.Client.EditClientFragment"
         android:label="fragment_edit_provider"
-        tools:layout="@layout/fragment_edit_client" />
+        tools:layout="@layout/fragment_edit_client" >
+        <argument
+            android:name="client"
+            app:argType="com.example.rodastech.entities.Client" />
+    </fragment>
     <fragment
         android:id="@+id/detailReportFragment"
         android:name="com.example.rodastech.fragments.Report.DetailReportFragment"

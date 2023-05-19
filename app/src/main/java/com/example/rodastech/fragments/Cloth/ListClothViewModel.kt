@@ -37,7 +37,7 @@ class ListClothViewModel : ViewModel() {
             val data = db.collection("cloths").get().await()
             for (cloth in data) {
                 dbClothList.add(cloth.toObject(Cloth::class.java))
-                Log.d("MHTEST", "ESTOY EN getAllCloths2(): $cloth")
+//                Log.d("MHTEST", "ESTOY EN getAllCloths2(): $cloth")
             }
         } catch (e: Exception) {
             Log.d("MHTEST", "EXCEPTION EN LIST CLOTH VIEW MODEL ${e.message}")

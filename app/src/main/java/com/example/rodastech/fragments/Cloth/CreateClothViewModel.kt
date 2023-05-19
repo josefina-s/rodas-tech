@@ -12,6 +12,7 @@ class CreateClothViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 
     val db = Firebase.firestore
+
     suspend fun insertCloth(cloth: Cloth) = coroutineScope {
         try {
             val insertMap = mapOf(

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ListClothFragment" >
+    tools:context=".fragments.Cloth.ListClothFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recList"
@@ -15,4 +15,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/floatActionCreateCloth"
+        android:layout_width="34dp"
+        android:layout_height="39dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/add_circle"
+        android:tint="#023E8A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.876" />
 </androidx.constraintlayout.widget.ConstraintLayout>

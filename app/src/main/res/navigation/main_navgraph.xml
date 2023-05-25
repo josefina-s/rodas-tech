@@ -65,11 +65,6 @@
         android:label="fragment_report"
         tools:layout="@layout/fragment_report" />
     <fragment
-        android:id="@+id/salesFragment"
-        android:name="com.example.rodastech.fragments.Report.Sale.SalesFragment"
-        android:label="fragment_sales"
-        tools:layout="@layout/fragment_sales" />
-    <fragment
         android:id="@+id/editClothFragment"
         android:name="com.example.rodastech.fragments.Cloth.EditClothFragment"
         android:label="fragment_edit_cloth"
@@ -124,38 +119,30 @@
         android:label="fragment_detail_report"
         tools:layout="@layout/fragment_detail_report" />
     <fragment
-        android:id="@+id/addItemSaleFragment"
-        android:name="com.example.rodastech.fragments.Report.Sale.AddItemSaleFragment"
-        android:label="fragment_add_item_sale"
-        tools:layout="@layout/fragment_add_item_sale" />
+        android:id="@+id/pedidosList"
+        android:name="com.example.rodastech.fragments.Order.PedidosList"
+        android:label="fragment_pedidos_list"
+        tools:layout="@layout/fragment_pedidos_list" >
+        <action
+            android:id="@+id/action_pedidosList_to_infoPedido"
+            app:destination="@id/infoPedido" />
+        <action
+            android:id="@+id/action_pedidosList_to_generarPedido"
+            app:destination="@id/generarPedido" />
+    </fragment>
     <fragment
-        android:id="@+id/outOfStockItemSaleFragment"
-        android:name="com.example.rodastech.fragments.Report.Sale.OutOfStockItemSaleFragment"
-        android:label="fragment_out_of_stock_item_sale"
-        tools:layout="@layout/fragment_out_of_stock_item_sale" />
+        android:id="@+id/infoPedido"
+        android:name="com.example.rodastech.fragments.Order.InfoPedido"
+        android:label="fragment_info_pedido"
+        tools:layout="@layout/fragment_info_pedido" >
+        <argument
+            android:name="pedido"
+            app:argType="com.example.rodastech.entities.Pedido" />
+    </fragment>
     <fragment
-        android:id="@+id/addedItemSaleFragment"
-        android:name="com.example.rodastech.fragments.Report.Sale.AddedItemSaleFragment"
-        android:label="fragment_added_item_sale"
-        tools:layout="@layout/fragment_added_item_sale" />
-    <fragment
-        android:id="@+id/succesfullOrderSaleFragment"
-        android:name="com.example.rodastech.fragments.Order.SuccesfullOrderSaleFragment"
-        android:label="fragment_succesfull_order_sale"
-        tools:layout="@layout/fragment_succesfull_order_sale" />
-    <fragment
-        android:id="@+id/showOrderSaleFragment"
-        android:name="com.example.rodastech.fragments.Order.ShowOrderSaleFragment"
-        android:label="fragment_show_order_sale"
-        tools:layout="@layout/fragment_show_order_sale" />
-    <fragment
-        android:id="@+id/listOrderFragment"
-        android:name="com.example.rodastech.fragments.Order.ListOrderFragment"
-        android:label="fragment_list_order"
-        tools:layout="@layout/fragment_list_order" />
-    <fragment
-        android:id="@+id/failedOrderSaleFragment"
-        android:name="com.example.rodastech.fragments.Order.FailedOrderSaleFragment"
-        android:label="fragment_failed_order_sale"
-        tools:layout="@layout/fragment_failed_order_sale" />
+        android:id="@+id/generarPedido"
+        android:name="com.example.rodastech.fragments.Order.GenerarPedido"
+        android:label="fragment_generar_pedido"
+        tools:layout="@layout/fragment_generar_pedido">
+    </fragment>
 </navigation>

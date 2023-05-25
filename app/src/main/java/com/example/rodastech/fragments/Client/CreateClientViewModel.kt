@@ -1,6 +1,7 @@
 package com.example.rodastech.fragments.Client
 
 import android.util.Log
+import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import com.example.rodastech.entities.Client
 import com.google.firebase.firestore.ktx.firestore
@@ -11,6 +12,8 @@ import kotlinx.coroutines.tasks.await
 class CreateClientViewModel : ViewModel() {
     // TODO: Implement the ViewModel
     val db = Firebase.firestore
+
+
     suspend fun insertClient(client: Client) = coroutineScope {
         try {
             val insertMap = mapOf(

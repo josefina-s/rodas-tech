@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
@@ -53,7 +54,7 @@ class DetailClothFragment : Fragment() {
 
         binding.imgBtnEditCloth.setOnClickListener {
             val action = DetailClothFragmentDirections.actionDetailClothFragmentToEditClothFragment(
-                Cloth(args.id,args.name,args.description,args.provider,args.color,args.width,args.long,args.meters,args.price,args.stockActual,args.stockMinimo)
+                Cloth(args.id,args.name,args.description,args.provider,args.color,args.width,args.long,args.price,args.stockActual,args.stockMinimo)
             )
             findNavController().navigate(action)
         }
@@ -71,7 +72,6 @@ class DetailClothFragment : Fragment() {
                             args.color,
                             args.width,
                             args.long,
-                            args.meters,
                             args.price,
                             args.stockActual,
                             args.stockMinimo))

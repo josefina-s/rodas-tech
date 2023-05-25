@@ -62,7 +62,7 @@ class ClothAdapter (
 
     override fun onBindViewHolder(holder: ClothHolder, position: Int) {
         clothList[position].name?.let { holder.setName(it) }
-        holder.setCantMtrs(clothList[position].meters)
+        holder.setCantMtrs(clothList[position].stockActual)
 
         holder.getCardImgBtnAdd().setOnClickListener {
             Log.d("MHTEST","HOLA")

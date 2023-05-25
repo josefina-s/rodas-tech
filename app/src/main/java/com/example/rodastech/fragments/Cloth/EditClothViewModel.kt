@@ -14,6 +14,11 @@ import kotlinx.coroutines.tasks.await
 class EditClothViewModel : ViewModel() {
     // TODO: Implement the ViewModel
     val db = Firebase.firestore
+
+
+
+
+
     suspend fun updateCloth(cloth: Cloth)= coroutineScope {
         try {
             val clothQuery=db.collection("cloths").whereEqualTo("id",cloth.id.toString()).get().await()
@@ -23,11 +28,11 @@ class EditClothViewModel : ViewModel() {
                 "color" to cloth.color.toString(),
                 "description" to cloth.description.toString(),
                 "long" to  cloth.long,
-                "meters" to cloth.meters,
                 "price" to cloth.price,
                 "provider" to cloth.provider.toString(),
                 "stockActual" to cloth.stockActual,
-                "width" to cloth.width
+                "width" to cloth.width,
+                "stockMinimo" to cloth.stockMinimo
             )
             for (dbCloth in clothQuery){
                 Log.d("MHTEST", "ESTOY EN for para update ${dbCloth.id}")

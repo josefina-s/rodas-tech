@@ -1,4 +1,4 @@
-package com.example.rodastech.fragments.Sale
+package com.example.rodastech.fragments.Report.Sale
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle

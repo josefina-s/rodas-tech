@@ -1,4 +1,4 @@
-package com.example.rodastech.fragments.Sale
+package com.example.rodastech.fragments.Report.Sale
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.rodastech.R
 
-class AddedItemSaleFragment : Fragment() {
+class AddItemSaleFragment : Fragment() {
 
     companion object {
-        fun newInstance() = AddedItemSaleFragment()
+        fun newInstance() = AddItemSaleFragment()
     }
 
-    private lateinit var viewModel: AddedItemSaleViewModel
+    private lateinit var viewModel: AddItemSaleViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_added_item_sale, container, false)
+        return inflater.inflate(R.layout.fragment_add_item_sale, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AddedItemSaleViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AddItemSaleViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

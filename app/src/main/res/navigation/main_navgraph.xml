@@ -66,7 +66,7 @@
         tools:layout="@layout/fragment_report" />
     <fragment
         android:id="@+id/salesFragment"
-        android:name="com.example.rodastech.fragments.Sale.SalesFragment"
+        android:name="com.example.rodastech.fragments.Report.Sale.SalesFragment"
         android:label="fragment_sales"
         tools:layout="@layout/fragment_sales" />
     <fragment
@@ -125,17 +125,17 @@
         tools:layout="@layout/fragment_detail_report" />
     <fragment
         android:id="@+id/addItemSaleFragment"
-        android:name="com.example.rodastech.fragments.Sale.AddItemSaleFragment"
+        android:name="com.example.rodastech.fragments.Report.Sale.AddItemSaleFragment"
         android:label="fragment_add_item_sale"
         tools:layout="@layout/fragment_add_item_sale" />
     <fragment
         android:id="@+id/outOfStockItemSaleFragment"
-        android:name="com.example.rodastech.fragments.Sale.OutOfStockItemSaleFragment"
+        android:name="com.example.rodastech.fragments.Report.Sale.OutOfStockItemSaleFragment"
         android:label="fragment_out_of_stock_item_sale"
         tools:layout="@layout/fragment_out_of_stock_item_sale" />
     <fragment
         android:id="@+id/addedItemSaleFragment"
-        android:name="com.example.rodastech.fragments.Sale.AddedItemSaleFragment"
+        android:name="com.example.rodastech.fragments.Report.Sale.AddedItemSaleFragment"
         android:label="fragment_added_item_sale"
         tools:layout="@layout/fragment_added_item_sale" />
     <fragment

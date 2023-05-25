@@ -16,8 +16,8 @@
         android:title="Reportes" />
 
     <item
-        android:id="@+id/salesFragment"
-        android:icon="@drawable/sell_icon"
-        android:title="Ventas" />
+        android:id="@+id/pedidosList"
+        android:icon="@drawable/pedidosicon"
+        android:title="Pedidos" />
 
 </menu>

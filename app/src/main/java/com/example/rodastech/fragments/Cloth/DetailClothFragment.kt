@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
@@ -27,13 +28,16 @@ class DetailClothFragment : Fragment() {
     lateinit var v : View
     private lateinit var binding: FragmentDetailClothBinding
     private lateinit var builder: Builder
+    private val listViewModel: ListClothViewModel by activityViewModels()
     private val viewModel: DetailClothViewModel by viewModels()
+    lateinit var cloth: Cloth
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        cloth= listViewModel.selectedCloth.value!!
         builder= Builder(activity)
         binding=FragmentDetailClothBinding.inflate(inflater,container,false)
         return binding.root
@@ -41,40 +45,32 @@ class DetailClothFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val args =DetailClothFragmentArgs.fromBundle(requireArguments()).cloth
+        val navController = findNavController()
 
-        binding.txtNombre.text=args.name
-        binding.txtColor.text=args.color
-        binding.txtAncho.text= args.width.toString()
-        binding.txtLargo.text=args.long.toString()
-        binding.txtPrecio.text=args.price.toString()
-        binding.txtProveedor.text=args.provider
-        binding.txtMinStock.text=args.stockMinimo.toString()
-        binding.txtStock.text=args.stockActual.toString()
+
+        binding.txtNombre.text=cloth.name
+        binding.txtColor.text=cloth.color
+        binding.txtAncho.text= cloth.width.toString()
+        binding.txtLargo.text=cloth.long.toString()
+        binding.txtPrecio.text=cloth.price.toString()
+        binding.txtProveedor.text=cloth.provider
+        binding.txtMinStock.text=cloth.stockMinimo.toString()
+        binding.txtStock.text=cloth.stockActual.toString()
 
         binding.imgBtnEditCloth.setOnClickListener {
-            val action = DetailClothFragmentDirections.actionDetailClothFragmentToEditClothFragment(
-                Cloth(args.id,args.name,args.description,args.provider,args.color,args.width,args.long,args.price,args.stockActual,args.stockMinimo)
-            )
+            val action = DetailClothFragmentDirections.actionDetailClothFragmentToEditClothFragment()
             findNavController().navigate(action)
         }
 
         binding.imgBtnDeleteCloth.setOnClickListener {
             builder.setTitle("Atención!")
-                .setMessage("Desea borrar el producto?")
+                .setMessage("Desea borrar el producto  ${cloth.name}?")
                 .setCancelable(true)
                 .setPositiveButton("Si"){dialogInterface, it ->
                     viewModel.viewModelScope.launch {
-                        viewModel.deleteCloth(Cloth(args.id,
-                            args.name,
-                            args.description,
-                            args.provider,
-                            args.color,
-                            args.width,
-                            args.long,
-                            args.price,
-                            args.stockActual,
-                            args.stockMinimo))
+                        viewModel.deleteCloth(cloth)
+                        navController.popBackStack()
+                        Toast.makeText(requireContext(), "Se eliminó el producto: ${cloth.name}", Toast.LENGTH_LONG).show()
                     }
                 }
                 .setNegativeButton("No"){dialogInterface, it ->

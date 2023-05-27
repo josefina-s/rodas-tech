@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.example.rodastech.R
 import com.example.rodastech.databinding.FragmentDetailClothBinding
 import com.example.rodastech.databinding.FragmentEditClothBinding
@@ -21,80 +22,82 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class EditClothFragment : Fragment() {
-    private val viewModel: EditClothViewModel by viewModels()
-    val createViewModel:  CreateClothViewModel by activityViewModels()
+    private val viewModel: EditClothViewModel by activityViewModels()
+    private val listViewModel: ListClothViewModel by activityViewModels()
     private val validateViewModel: ValidateFormViewModel by activityViewModels()
     private lateinit var binding: FragmentEditClothBinding
+    lateinit var cloth: Cloth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding=FragmentEditClothBinding.inflate(inflater,container,false)
+        cloth= listViewModel.selectedCloth.value!!
+        binding.txtEditClothName.setText(cloth.name)
+        binding.txtEditClothDesc.setText(cloth.description)
+        binding.txtEditClothColor.setText(cloth.color)
+        binding.txtEditClothWidth.setText(cloth.width.toString())
+        binding.txtEditClothLong.setText(cloth.long.toString())
+        binding.txtEditClothProvider.setText(cloth.provider)
+        binding.txtEditClothStock.setText(cloth.stockMinimo.toString())
+        binding.txtEditClothPrice.setText(cloth.price.toString())
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        val args= EditClothFragmentArgs.fromBundle(requireArguments()).cloth
-        validateViewModel.cloth.value=args
-        binding.txtEditClothName.setText(args.name)
-        binding.txtEditClothDesc.setText(args.description)
-        binding.txtEditClothColor.setText(args.color)
-        binding.txtEditClothWidth.setText(args.width.toString())
-        binding.txtEditClothLong.setText(args.long.toString())
-        binding.txtEditClothProvider.setText(args.provider)
-        binding.txtEditClothStock.setText(args.stockActual.toString())
-
-
-
         binding.btnSave.setOnClickListener{
-            args.name=binding.txtEditClothName.text.toString()
-            args.description=binding.txtEditClothDesc.text.toString()
-            args.color=binding.txtEditClothColor.text.toString()
-            args.width=Integer.parseInt(binding.txtEditClothWidth.text.toString())
-            args.long=Integer.parseInt(binding.txtEditClothLong.text.toString())
-            args.provider=binding.txtEditClothProvider.text.toString()
-            args.stockActual=Integer.parseInt(binding.txtEditClothStock.text.toString())
             clearErrorMsg(
-                args.name.toString(),
-                args.description.toString(),
-                args.color.toString(),
-                args.provider.toString(),
-                args.width.toString(),
-                args.long.toString(),
-                args.stockMinimo.toString()
+                binding.txtEditClothName.text.toString(),
+                binding.txtEditClothDesc.text.toString(),
+                binding.txtEditClothColor.text.toString(),
+                binding.txtEditClothProvider.text.toString(),
+                binding.txtEditClothWidth.text.toString(),
+                binding.txtEditClothLong.text.toString(),
+                binding.txtEditClothStock.text.toString(),
+                binding.txtEditClothPrice.text.toString()
             )
             validateViewModel.validarFormulario(
-                args.name.toString(),
-                args.description.toString(),
-                args.color.toString(),
-                args.provider.toString(),
-                args.width.toString(),
-                args.long.toString(),
-                args.stockMinimo.toString()
+                binding.txtEditClothName.text.toString(),
+                binding.txtEditClothDesc.text.toString(),
+                binding.txtEditClothColor.text.toString(),
+                binding.txtEditClothProvider.text.toString(),
+                binding.txtEditClothWidth.text.toString(),
+                binding.txtEditClothLong.text.toString(),
+                binding.txtEditClothStock.text.toString(),
+                binding.txtEditClothPrice.text.toString()
             )
-
             validateViewModel.formularioValido.observe(viewLifecycleOwner){
                 if(it){
                     viewModel.viewModelScope.launch {
-                        viewModel.updateCloth(args)
+                        cloth.name=binding.txtEditClothName.text.toString()
+                        cloth.description=binding.txtEditClothDesc.text.toString()
+                        cloth.color=binding.txtEditClothColor.text.toString()
+                        cloth.width=Integer.parseInt(binding.txtEditClothWidth.text.toString())
+                        cloth.long=Integer.parseInt(binding.txtEditClothLong.text.toString())
+                        cloth.provider=binding.txtEditClothProvider.text.toString()
+                        cloth.stockMinimo=Integer.parseInt(binding.txtEditClothStock.text.toString())
+                        cloth.price=Integer.parseInt(binding.txtEditClothPrice.text.toString())
+                        viewModel.updateCloth(cloth)
                         Log.d("MHTEST", "ESTOY EN EL TRUE del formulario valido en fragment")
                         val snackBar=Snackbar.make(binding.root,"Se modificó correctamente el producto", Snackbar.LENGTH_SHORT)
                         snackBar.view.setBackgroundColor(Color.parseColor("#A9EF90"))
                         snackBar.show()
+                        val navController = findNavController()
+                        navController.popBackStack()
                     }
                 }
                 else{
                     setErrorMsg(
-                        args.name.toString(),
-                        args.description.toString(),
-                        args.color.toString(),
-                        args.provider.toString(),
-                        args.width.toString(),
-                        args.long.toString(),
-                        args.stockMinimo.toString()
+                        binding.txtEditClothName.text.toString(),
+                        binding.txtEditClothDesc.text.toString(),
+                        binding.txtEditClothColor.text.toString(),
+                        binding.txtEditClothProvider.text.toString(),
+                        binding.txtEditClothWidth.text.toString(),
+                        binding.txtEditClothLong.text.toString(),
+                        binding.txtEditClothStock.text.toString(),
+                        binding.txtEditClothPrice.text.toString()
                     )
                     Log.d("MHTEST", "ESTOY EN EL false del formulario valido en fragment")
                     val snackBar=Snackbar.make(binding.root,"ERROR:No se pudo modificar el producto, revise los campos con errores", Snackbar.LENGTH_SHORT)
@@ -107,7 +110,7 @@ class EditClothFragment : Fragment() {
 
     }
 
-    fun setErrorMsg(name: String, desc: String, color: String,provider: String,  width: String, long: String, initialStock: String) {
+    fun setErrorMsg(name: String, desc: String, color: String,provider: String,  width: String, long: String, initialStock: String, price: String) {
         if (!validateViewModel.isValidName(name)) {
             binding.txtErrorNombre.text = validateViewModel.errorNombre.value.toString()
         }
@@ -129,8 +132,11 @@ class EditClothFragment : Fragment() {
         if (!validateViewModel.isValidInitialStock(initialStock)) {
             binding.txtErrorClothInitialStock.text = validateViewModel.errorInitialStock.value.toString()
         }
+        if (!validateViewModel.isValidPrice(price)) {
+            binding.txtErrorClothPrice.text = validateViewModel.errorPrice.value.toString()
+        }
     }
-    fun clearErrorMsg(name: String, desc: String,  color: String, provider: String, width: String, long: String, initialStock: String) {
+    fun clearErrorMsg(name: String, desc: String,  color: String, provider: String, width: String, long: String, initialStock: String, price : String) {
         if (validateViewModel.isValidName(name)) {
             binding.txtErrorNombre.text = ""
         }
@@ -151,6 +157,9 @@ class EditClothFragment : Fragment() {
         }
         if (validateViewModel.isValidInitialStock(initialStock)) {
             binding.txtErrorClothInitialStock.text = ""
+        }
+        if (validateViewModel.isValidPrice(price)) {
+            binding.txtErrorClothPrice.text = ""
         }
     }
 

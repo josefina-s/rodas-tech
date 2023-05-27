@@ -26,6 +26,9 @@ class ValidateFormViewModel : ViewModel(){
     val errorLong = MutableLiveData<String?>()
     val errorWidth = MutableLiveData<String?>()
     val errorInitialStock = MutableLiveData<String?>()
+    val errorActualStock = MutableLiveData<String?>()
+    val errorPrice = MutableLiveData<String?>()
+    val errorCuit = MutableLiveData<String?>()
 
     val errorContactPerson = MutableLiveData<String?>()
     val errorPhone = MutableLiveData<String?>()
@@ -36,11 +39,22 @@ class ValidateFormViewModel : ViewModel(){
     val formularioValido = MutableLiveData<Boolean>()
 
 
-    fun validarFormulario(name: String, desc: String, provider: String, color: String, width: String, long: String, initialStock: String) {
-        formularioValido.value = isValidName(name)&&isValidDesc(desc)&&isValidProvider(provider)&&isValidColor(color)&&isValidWidth(width)&&isValidLong(long)&&isValidInitialStock(initialStock)
+    fun validarFormulario(name: String, desc: String, provider: String, color: String, width: String, long: String, initialStock: String, price: String) {
+        formularioValido.value = isValidName(name)&&isValidDesc(desc)&&isValidProvider(provider)&&isValidColor(color)&&isValidWidth(width)&&isValidLong(long)&&isValidInitialStock(initialStock)&&isValidPrice(price)
     }
-    fun validarFormulario(name: String, contactPerson:String, phoneNumber: String, email: String, clientAddress : String, postalCode: String) {
-        formularioValido.value = isValidName(name)&&isValidName(contactPerson)&&isValidPhoneNumber(phoneNumber)&&isValidEmail(email)&&isValidAddress(clientAddress)&&isValidPostalCode(postalCode)
+    fun validarFormulario(name: String, cuit: String,contactPerson:String, phoneNumber: String, email: String, clientAddress : String, postalCode: String) {
+        formularioValido.value = isValidName(name)&&isValidCUIT(cuit)&&isValidContactPerson(contactPerson)&&isValidPhoneNumber(phoneNumber)&&isValidEmail(email)&&isValidAddress(clientAddress)&&isValidPostalCode(postalCode)
+    }
+    fun validarFormulario(actualStock: String) {
+        formularioValido.value = isValidActualStock(actualStock)
+    }
+
+    fun isValidActualStock(actualStock: String): Boolean {
+        if (actualStock.isNullOrEmpty()){
+            errorActualStock.value="Campo obligatorio"
+            return false
+        }
+        return true
     }
 
 
@@ -91,13 +105,13 @@ class ValidateFormViewModel : ViewModel(){
         return true
     }
     fun isValidPhoneNumber(phoneNumber :String): Boolean{
+        val patron = Regex("^\\d{10}$")
+
         if (phoneNumber.isNullOrEmpty()){
             errorPhone.value="Campo obligatorio"
             return false
         }
-        else if(PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber))
-//        else if(PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber))
-        {
+        else if(!patron.matches(phoneNumber)){
             errorPhone.value="Formato de teléfono inválido"
             return false
         }
@@ -105,10 +119,12 @@ class ValidateFormViewModel : ViewModel(){
         return true
     }
     fun isValidPostalCode(postalCode : String): Boolean {
+        val patron = Regex("^\\d{4}(-\\d{3})?$")
+//        return patron.matches(codigoPostal)
         if (postalCode.isNullOrEmpty()) {
             errorPostalAddress.value = "Campo obligatorio"
             return false
-        } else if(Integer.parseInt(postalCode) !=4){
+        } else if(!patron.matches(postalCode)){
             errorPostalAddress.value = "El código postal debe ser de cuatro caracteres"
             return false
         }
@@ -133,7 +149,7 @@ class ValidateFormViewModel : ViewModel(){
         if (desc.isNullOrEmpty()) {
             errorDesc.value = "Campo obligatorio"
             return false
-        } else if(desc.length<4||desc.length>20){
+        } else if(desc.length<4||desc.length>50){
             errorDesc.value = "La longitud tiene que ser entre 4 y 20 caracteres"
             return false
         }
@@ -173,16 +189,64 @@ class ValidateFormViewModel : ViewModel(){
         errorWidth.value =""
         return true
     }
+    fun isValidPrice(price: String): Boolean {
+        if (price.isNullOrEmpty()) {
+            errorPrice.value = "Campo obligatorio"
+            return false
+        } else if(Integer.parseInt(price) <999||Integer.parseInt(price)>50000){
+            errorPrice.value = "El precio tiene que ser entre 1000 y 50000 metros"
+            return false
+        }
+        errorPrice.value =""
+        return true
+    }
     fun isValidInitialStock(initialStock: String): Boolean {
         if (initialStock.isNullOrEmpty()) {
             errorInitialStock.value = "Campo obligatorio"
             return false
-        } else if(Integer.parseInt(initialStock) <5||Integer.parseInt(initialStock)>500){
-            errorInitialStock.value = "El stock inicial tiene que ser entre 5 y 500 metros"
+        } else if(Integer.parseInt(initialStock) <10||Integer.parseInt(initialStock)>999){
+            errorInitialStock.value = "El stock mínimo tiene que ser entre 10 y 1000 metros"
             return false
         }
         errorInitialStock.value =""
         return true
+    }
+
+    fun isValidCUIT(cuit: String): Boolean {
+        val cuitLimpio = cuit.replace("-", "") // Eliminar guiones si los hubiera
+        if (cuit.isNullOrEmpty()) {
+            errorCuit.value = "Campo obligatorio"
+            return false
+        }
+
+        if (cuitLimpio.length != 11 || !cuitLimpio.all { it.isDigit() }) {
+            errorCuit.value = "Formato incorrecto"
+            return false // Longitud incorrecta o contiene caracteres no numéricos
+        }
+
+        val factores = intArrayOf(5, 4, 3, 2, 7, 6, 5, 4, 3, 2) // Factores de multiplicación
+
+        var suma = 0
+        for (i in 0 until 10) {
+            suma += Character.getNumericValue(cuitLimpio[i]) * factores[i]
+        }
+
+        val digitoVerificador = 11 - (suma % 11)
+        val ultimoDigito = Character.getNumericValue(cuitLimpio[10])
+
+        if (digitoVerificador == 11) {
+            return ultimoDigito == 0
+        } else if (digitoVerificador == 10) {
+            return ultimoDigito == 9
+        }
+        if (digitoVerificador == ultimoDigito){
+            errorCuit.value = ""
+            return true
+        }
+        else{
+            errorCuit.value = "CUIT incorrecto"
+            return false
+        }
     }
 
 

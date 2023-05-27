@@ -1,5 +1,6 @@
 package com.example.rodastech.adapters
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,19 +11,17 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rodastech.R
 import com.example.rodastech.entities.Cloth
+import com.example.rodastech.fragments.Cloth.ListClothFragment
 
 class ClothAdapter (
     var clothList : MutableList<Cloth>,
-    var onClick: (Int) -> Unit
+    var onClick: (Int, String) -> Unit
 ): RecyclerView.Adapter<ClothAdapter.ClothHolder>() {
-
 
     class ClothHolder(v: View) : RecyclerView.ViewHolder(v) {
         private var v = v
-
         init {
             this.v = v
-
         }
 
         fun setName(name: String) {
@@ -30,9 +29,10 @@ class ClothAdapter (
             txtName.text = name
         }
 
-        fun setCantMtrs(meters: Int?) {
+        fun setCantMtrs(meters: Int?, color: String) {
             val txtMeters: TextView = v.findViewById(R.id.txtMeters)
-            txtMeters.text = meters.toString()
+            txtMeters.text = meters.toString()+" mts"
+            txtMeters.setTextColor(Color.parseColor(color))
         }
 
         fun getCard(): CardView {
@@ -46,8 +46,6 @@ class ClothAdapter (
             val btnDetail : ImageButton= v.findViewById(R.id.imgBtnDetails)
             return btnDetail
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClothHolder {
@@ -62,13 +60,17 @@ class ClothAdapter (
 
     override fun onBindViewHolder(holder: ClothHolder, position: Int) {
         clothList[position].name?.let { holder.setName(it) }
-        holder.setCantMtrs(clothList[position].stockActual)
-
+        if (clothList[position].stockActual!! >= clothList[position].stockMinimo!!){
+            holder.setCantMtrs(clothList[position].stockActual, "#2F792E")
+        }else{
+            holder.setCantMtrs(clothList[position].stockActual, "#FC0000")
+        }
         holder.getCardImgBtnAdd().setOnClickListener {
+            onClick(position, "ADD")
             Log.d("MHTEST","HOLA")
         }
         holder.getCardImgBtnDetails().setOnClickListener {
-            onClick(position)
+            onClick(position, "DETAILS")
         }
 
     }

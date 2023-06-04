@@ -26,9 +26,9 @@ class ProductoPedidoAdapter (
             txtName.text = name
         }
 
-        fun setMetros(metros: String){
+        fun setMetros(metros: Int){
             val txtMetros: TextView = view.findViewById(R.id.txtMetros)
-            txtMetros.text = metros + " metros"
+            txtMetros.text = metros.toString() + " metros"
         }
 
         fun getCard() : CardView {
@@ -46,7 +46,7 @@ class ProductoPedidoAdapter (
     }
 
     override fun onBindViewHolder(holder: ProductoPedidoHolder, position: Int) {
-        holder.setProductoName(productos[position].nombre)
+        productos[position].nombre?.let { holder.setProductoName(it) }
         holder.setMetros(productos[position].metros)
 
     }

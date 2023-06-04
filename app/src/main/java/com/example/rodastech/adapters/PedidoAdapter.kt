@@ -23,12 +23,12 @@ class PedidoAdapter(
         }
 
         fun setClienteName(name: String) {
-            val txtName: TextView = view.findViewById(R.id.txtCliente)
+            val txtName: TextView = view.findViewById(R.id.txtClientePedido)
             txtName.text = name
         }
 
         fun setFecha(fecha: String){
-            val txtFechaPedido: TextView = view.findViewById(R.id.txtFecha)
+            val txtFechaPedido: TextView = view.findViewById(R.id.txtFechaPedido)
             txtFechaPedido.text = fecha
         }
 
@@ -47,8 +47,8 @@ class PedidoAdapter(
     }
 
     override fun onBindViewHolder(holder: PedidoHolder, position: Int) {
-        holder.setClienteName(pedidos[position].cliente)
-        holder.setFecha(pedidos[position].fecha)
+        pedidos[position].cliente?.let { holder.setClienteName(it) }
+        pedidos[position].fecha?.let { holder.setFecha(it) }
         holder.getCard().setOnClickListener {
             onClick(position)
         }

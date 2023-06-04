@@ -9,6 +9,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,9 +17,12 @@ import com.example.rodastech.R
 import com.example.rodastech.adapters.ProductoPedidoAdapter
 import com.example.rodastech.entities.Client
 import com.example.rodastech.entities.Pedido
+import com.example.rodastech.fragments.Client.ClientViewModel
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class GenerarPedido : Fragment() {
     private lateinit var menuSeleccionarCliente: TextInputLayout
@@ -26,8 +30,8 @@ class GenerarPedido : Fragment() {
     private lateinit var btnAddProducto: Button
     private lateinit var recyclerProductos: RecyclerView
     private lateinit var adapterProductosPedido: ProductoPedidoAdapter
-    private  val pedViewModel: GenerarPedidoViewModel by activityViewModels()
-    private  val pedidosViewModel: PedidosListViewModel by activityViewModels()
+    private  val generarPedidoViewModel: GenerarPedidoViewModel by activityViewModels()
+    private  val clientesViewModel: ClientViewModel by activityViewModels()
     private lateinit var btnConfirmar : Button
     private lateinit var btnCancelar : Button
 
@@ -56,57 +60,47 @@ class GenerarPedido : Fragment() {
     override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
         super.onViewCreated(v, savedInstanceState)
         val navController = findNavController()
-
-        val clientes = arrayOf(
-            Client("Empresa Telas", "Empresa Telas", "816544123"),
-            Client("Jeans cools", "Jeans cools", "806789456"),
-            Client("jyjeans", "AvellanedaTex", "876544789")
-        )
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, clientes)
-        dropDownClientes.setAdapter(adapter)
+        clientesViewModel.getClientsList()
+        clientesViewModel.dbClients.observe(viewLifecycleOwner){
+            val adapter= ArrayAdapter(requireContext(),android.R.layout.simple_dropdown_item_1line,it)
+            dropDownClientes.setAdapter(adapter)
+        }
 
         dropDownClientes.setOnItemClickListener { parent, v, position, id ->
             val clienteSeleccionado = parent.getItemAtPosition(position) as Client
-            pedViewModel.setClienteSeleccionado(clienteSeleccionado)
+            generarPedidoViewModel.setClienteSeleccionado(clienteSeleccionado)
         }
 
         btnAddProducto.setOnClickListener {
             val dialogFragment = AgregarProductoDialog()
             dialogFragment.show(parentFragmentManager, "AgregarProductoDialog")
         }
-
-        btnConfirmar.setOnClickListener {
-            val clienteSeleccionado = pedViewModel.clienteSeleccionado.value
-            val listaProductos = pedViewModel.listaProductos.value.orEmpty().toMutableList()
-            if (clienteSeleccionado != null) {
-                val nuevoPedido = clienteSeleccionado.name?.let { it1 ->
-                    Pedido(
-                        obtenerFechaActual(), it1, listaProductos
-                    )
-                }
-                //aca se le pega a la db
-                if (nuevoPedido != null) {
-                    pedidosViewModel.agregarPedido(nuevoPedido)
-                }
-                limpiarFormulario()
-                navController.popBackStack()
-            }
+        generarPedidoViewModel.nuevoProducto.observe(viewLifecycleOwner) { producto ->
+            generarPedidoViewModel.agregarProductoALista(producto)
         }
 
+        generarPedidoViewModel.listaProductos.observe(viewLifecycleOwner) { productos ->
+            adapterProductosPedido.actualizarProductos(productos)
+        }
+
+        btnConfirmar.setOnClickListener {
+          val myUuid = UUID.randomUUID()
+          val myUuidAsString = myUuid.toString()
+
+            val clienteSeleccionado = Pedido(generarPedidoViewModel.clienteSeleccionado.value?.name, obtenerFechaActual(), myUuidAsString)
+            val listaProductos = generarPedidoViewModel.listaProductos.value.orEmpty().toMutableList()
+
+            generarPedidoViewModel.viewModelScope.launch {
+                generarPedidoViewModel.insertPedido(clienteSeleccionado)
+                generarPedidoViewModel.insertProductosPedidos(listaProductos,myUuidAsString)
+            }
+
+        }
 
         btnCancelar.setOnClickListener {
             limpiarFormulario()
 
         }
-
-        pedViewModel.nuevoProducto.observe(viewLifecycleOwner) { producto ->
-            pedViewModel.agregarProductoALista(producto)
-        }
-
-        pedViewModel.listaProductos.observe(viewLifecycleOwner) { productos ->
-            adapterProductosPedido.actualizarProductos(productos)
-        }
-
 
     }
 
@@ -117,7 +111,7 @@ class GenerarPedido : Fragment() {
 
     private fun limpiarFormulario() {
         dropDownClientes.text = null
-        pedViewModel.limpiarPedido()
+        generarPedidoViewModel.limpiarPedido()
     }
 
     override fun onResume() {

@@ -6,57 +6,56 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rodastech.R
 import com.example.rodastech.adapters.PedidoAdapter
+import com.example.rodastech.databinding.FragmentGenerarPedidoBinding
+import com.example.rodastech.databinding.FragmentListClothBinding
+import com.example.rodastech.databinding.FragmentPedidosListBinding
+import com.example.rodastech.entities.Pedido
+import com.example.rodastech.entities.ProductoPedido
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.launch
+import java.util.*
 
 class PedidosList : Fragment() {
 
-    lateinit var v: View
-    lateinit var recyclerPedidos: RecyclerView
-    lateinit var floatingButton: FloatingActionButton
-
     private val pedidosViewModel: PedidosListViewModel by activityViewModels()
-
+    private lateinit var binding: FragmentPedidosListBinding
     lateinit var adapter: PedidoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v = inflater.inflate(R.layout.fragment_pedidos_list, container, false)
-        recyclerPedidos = v.findViewById(R.id.RecyclerPedidos)
-        floatingButton = v.findViewById(R.id.fab)
-        return v
+        binding=FragmentPedidosListBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
-    override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(v, savedInstanceState)
-        //aca el viewmodel se va a traer los pedidos de la db
-        adapter = PedidoAdapter(pedidosViewModel.listaPedidos.value.orEmpty().toMutableList()) { position ->
-            val pedidos = pedidosViewModel.listaPedidos.value.orEmpty()
-            if (position in pedidos.indices) {
-                val pedido = pedidos[position]
-                pedidosViewModel.seleccionarPedido(pedido)
-                val action = PedidosListDirections.actionPedidosListToInfoPedido(pedido)
+
+    override fun onStart() {
+        super.onStart()
+        binding.RecyclerPedidos.layoutManager=LinearLayoutManager(context)
+        pedidosViewModel.getAllPedidos()
+        pedidosViewModel.listaPedidos.observe(viewLifecycleOwner){pedidos->
+            adapter= PedidoAdapter(pedidos){ position->
+                pedidosViewModel.seleccionarPedido(pedidos[position])
+                val action = PedidosListDirections.actionPedidosListToInfoPedido(pedidos[position])
                 findNavController().navigate(action)
             }
+            binding.RecyclerPedidos.adapter=adapter
         }
-
-        recyclerPedidos.layoutManager = LinearLayoutManager(context)
-        recyclerPedidos.adapter = adapter
-
-        floatingButton.setOnClickListener {
+        pedidosViewModel.listaPedidos.observe(viewLifecycleOwner) { pedidos ->
+            adapter.actualizarPedidos(pedidos)
+        }
+        binding.fab.setOnClickListener {
             var action = PedidosListDirections.actionPedidosListToGenerarPedido()
             findNavController().navigate(action)
         }
 
-        pedidosViewModel.listaPedidos.observe(viewLifecycleOwner) { pedidos ->
-            adapter.actualizarPedidos(pedidos)
-        }
     }
 }
 

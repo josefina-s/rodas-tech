@@ -1,13 +1,17 @@
 package com.example.rodastech.fragments.Order
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rodastech.entities.Client
+import com.example.rodastech.entities.Pedido
 import com.example.rodastech.entities.ProductoPedido
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.tasks.await
 
 class GenerarPedidoViewModel : ViewModel() {
     val db = Firebase.firestore
@@ -41,5 +45,33 @@ class GenerarPedidoViewModel : ViewModel() {
         _listaProductos.value = mutableListOf()
     }
 
+    suspend fun insertPedido(pedido: Pedido) = coroutineScope {
+        try {
+            val insertMap = mapOf(
+                "cliente" to pedido.cliente,
+                "fecha" to pedido.fecha,
+                "idProductosPedidos" to pedido.idProductosPedidos
+            )
+            db.collection("pedidos").add(insertMap).await()
+
+        } catch (e: Exception) {
+            Log.d("MHTEST", "EXCEPTION EN CREATE CLOTH VIEW MODEL ${e.message}")
+        }
+    }
+
+    suspend fun insertProductosPedidos(productosPedidos: MutableList<ProductoPedido>, id : String) = coroutineScope {
+        try {
+            for (p in productosPedidos){
+                val insertMap = mapOf(
+                    "nombre" to p.nombre,
+                    "metros" to p.metros,
+                    "id" to id
+                )
+                db.collection("productosPedidos").add(insertMap).await()
+            }
+        } catch (e: Exception) {
+            Log.d("MHTEST", "EXCEPTION EN CREATE CLOTH VIEW MODEL ${e.message}")
+        }
+    }
 
 }

@@ -16,4 +16,8 @@ class Cloth( //mheredia 04052023 igualo campos al figma
     var stockActual:Int?=0,
     var stockMinimo:Int?=0
 ): Parcelable {
+    override fun toString(): String {
+        return name ?: ""
+    }
+
 }

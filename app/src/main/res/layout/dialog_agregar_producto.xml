@@ -89,4 +89,16 @@
         app:layout_constraintTop_toBottomOf="@+id/txtProductosNewPedido3"
         app:layout_constraintVertical_bias="0.916" />
 
+    <TextView
+        android:id="@+id/txtErrorCantStock"
+        android:layout_width="342dp"
+        android:layout_height="38dp"
+        android:textColor="#DD5050"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,7 +63,11 @@
         android:id="@+id/reportFragment"
         android:name="com.example.rodastech.fragments.Report.ReportFragment"
         android:label="fragment_report"
-        tools:layout="@layout/fragment_report" />
+        tools:layout="@layout/fragment_report" >
+        <action
+            android:id="@+id/action_reportFragment_to_detailReportFragment"
+            app:destination="@id/detailReportFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editClothFragment"
         android:name="com.example.rodastech.fragments.Cloth.EditClothFragment"
@@ -117,7 +121,11 @@
         android:id="@+id/detailReportFragment"
         android:name="com.example.rodastech.fragments.Report.DetailReportFragment"
         android:label="fragment_detail_report"
-        tools:layout="@layout/fragment_detail_report" />
+        tools:layout="@layout/fragment_detail_report" >
+        <argument
+            android:name="report"
+            app:argType="com.example.rodastech.entities.Report" />
+    </fragment>
     <fragment
         android:id="@+id/pedidosList"
         android:name="com.example.rodastech.fragments.Order.PedidosList"

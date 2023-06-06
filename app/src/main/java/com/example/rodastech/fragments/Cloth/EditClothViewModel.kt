@@ -45,4 +45,22 @@ class EditClothViewModel : ViewModel() {
     }
 
 
+    suspend fun updateClothStock(cloth: Cloth)= coroutineScope {
+        try {
+            val clothQuery=db.collection("cloths").whereEqualTo("id",cloth.id.toString()).get().await()
+            Log.d("MHTEST", "ESTOY EN get id num")
+            val updateMap= mapOf(
+                "stockActual" to cloth.stockActual,
+            )
+            for (dbCloth in clothQuery){
+                Log.d("MHTEST", "ESTOY EN for para update ${dbCloth.id}")
+                db.collection("cloths").document(dbCloth.id).update(updateMap).await()
+
+            }
+        }catch (e:Exception){
+            Log.d("MHTEST", "EXCEPTION EN EDIT CLOTH VIEW MODEL ${e.message}")
+        }
+    }
+
+
 }

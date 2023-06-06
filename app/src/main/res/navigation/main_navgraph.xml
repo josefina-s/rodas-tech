@@ -37,9 +37,6 @@
         android:name="com.example.rodastech.fragments.Cloth.DetailClothFragment"
         android:label="fragment_detail_cloth"
         tools:layout="@layout/fragment_detail_cloth" >
-        <argument
-            android:name="cloth"
-            app:argType="com.example.rodastech.entities.Cloth" />
         <action
             android:id="@+id/action_detailClothFragment_to_editClothFragment"
             app:destination="@id/editClothFragment" />
@@ -68,11 +65,7 @@
         android:id="@+id/editClothFragment"
         android:name="com.example.rodastech.fragments.Cloth.EditClothFragment"
         android:label="fragment_edit_cloth"
-        tools:layout="@layout/fragment_edit_cloth" >
-        <argument
-            android:name="cloth"
-            app:argType="com.example.rodastech.entities.Cloth" />
-    </fragment>
+        tools:layout="@layout/fragment_edit_cloth" />
     <fragment
         android:id="@+id/createClothFragment"
         android:name="com.example.rodastech.fragments.Cloth.CreateClothFragment"
@@ -92,9 +85,6 @@
         android:name="com.example.rodastech.fragments.Client.DetailClientFragment"
         android:label="fragment_detail_provider"
         tools:layout="@layout/fragment_detail_client" >
-        <argument
-            android:name="client"
-            app:argType="com.example.rodastech.entities.Client" />
         <action
             android:id="@+id/action_detailClientFragment_to_editClientFragment"
             app:destination="@id/editClientFragment" />
@@ -108,11 +98,7 @@
         android:id="@+id/editClientFragment"
         android:name="com.example.rodastech.fragments.Client.EditClientFragment"
         android:label="fragment_edit_provider"
-        tools:layout="@layout/fragment_edit_client" >
-        <argument
-            android:name="client"
-            app:argType="com.example.rodastech.entities.Client" />
-    </fragment>
+        tools:layout="@layout/fragment_edit_client" />
     <fragment
         android:id="@+id/detailReportFragment"
         android:name="com.example.rodastech.fragments.Report.DetailReportFragment"

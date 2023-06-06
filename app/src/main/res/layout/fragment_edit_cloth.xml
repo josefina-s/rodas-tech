@@ -9,17 +9,19 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="141dp"
-        android:layout_height="27dp"
+        android:layout_width="237dp"
+        android:layout_height="33dp"
+        android:fontFamily="sans-serif-medium"
         android:text="EDITAR PRODUCTO"
         android:textColor="#000000"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/btnSave"
@@ -38,13 +40,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Proveedor"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.392" />
+        app:layout_constraintVertical_bias="0.294" />
+
     <TextView
         android:id="@+id/txtErrorClothProvider"
         android:layout_width="wrap_content"
@@ -56,20 +60,21 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.346" />
 
     <EditText
         android:id="@+id/txtEditClothLong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Largo"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.572" />
 
     <TextView
         android:id="@+id/txtErrorClothInitialLong"
@@ -82,20 +87,21 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
+        app:layout_constraintVertical_bias="0.615" />
 
     <EditText
         android:id="@+id/txtEditClothDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Descripción"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintVertical_bias="0.201" />
 
     <TextView
         android:id="@+id/txtErrorClothDesc"
@@ -108,20 +114,21 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.257" />
 
     <EditText
         android:id="@+id/txtEditClothWidth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Ancho"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.479" />
 
     <TextView
         android:id="@+id/txtErrorClothWidth"
@@ -134,20 +141,23 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
+        app:layout_constraintVertical_bias="0.525" />
+
 
     <EditText
         android:id="@+id/txtEditClothStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Stock Mínimo"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.666" />
+
     <TextView
         android:id="@+id/txtErrorClothInitialStock"
         android:layout_width="wrap_content"
@@ -159,21 +169,21 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
-
+        app:layout_constraintVertical_bias="0.705" />
 
     <EditText
         android:id="@+id/txtEditClothName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Nombre Tela"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.214" />
+        app:layout_constraintVertical_bias="0.107" />
 
     <TextView
         android:id="@+id/txtErrorNombre"
@@ -187,20 +197,21 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.167" />
 
     <EditText
         android:id="@+id/txtEditClothColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Color"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintVertical_bias="0.386" />
 
     <TextView
         android:id="@+id/txtErrorClothColor"
@@ -213,6 +224,33 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.508" />
+        app:layout_constraintVertical_bias="0.435" />
+
+    <TextView
+        android:id="@+id/txtErrorClothPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColor="#DD5050"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.404"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.794" />
+
+    <EditText
+        android:id="@+id/txtEditClothPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Precio"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.759" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

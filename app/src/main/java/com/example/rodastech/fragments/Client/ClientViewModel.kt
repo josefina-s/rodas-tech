@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rodastech.entities.Client
+import com.example.rodastech.entities.Cloth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
@@ -16,6 +17,13 @@ class ClientViewModel : ViewModel() {
     val db = Firebase.firestore
     private val _clients = MutableLiveData<MutableList<Client>>()
     val dbClients : LiveData<MutableList<Client>> get() = _clients
+
+    private val _selectedClient = MutableLiveData<Client>()
+    val selectedClient: MutableLiveData<Client> get() = _selectedClient
+
+    fun setSelectedClient(client: Client) {
+        _selectedClient.value = client
+    }
 
 
 

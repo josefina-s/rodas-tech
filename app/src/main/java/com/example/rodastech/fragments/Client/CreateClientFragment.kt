@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.example.rodastech.databinding.FragmentCreateClientBinding
 import com.example.rodastech.entities.Client
 import com.example.rodastech.fragments.Cloth.ValidateFormViewModel
@@ -35,11 +36,9 @@ class CreateClientFragment : Fragment() {
         super.onStart()
 
         binding.btnSaveCreateClient.setOnClickListener{
-
-                val myUuid = UUID.randomUUID()
-                val myUuidAsString = myUuid.toString()
                 clearErrorMsg(
                     binding.txtCreateClientName.text.toString(),
+                    binding.txtCreateClientCuit.text.toString(),
                     binding.txtCreateClientContactPerson.text.toString(),
                     binding.txtCreateClientPhone.text.toString(),
                     binding.txtCreateClientEmail.text.toString(),
@@ -48,6 +47,7 @@ class CreateClientFragment : Fragment() {
                 )
                 validateViewModel.validarFormulario(
                     binding.txtCreateClientName.text.toString(),
+                    binding.txtCreateClientCuit.text.toString(),
                     binding.txtCreateClientContactPerson.text.toString(),
                     binding.txtCreateClientPhone.text.toString(),
                     binding.txtCreateClientEmail.text.toString(),
@@ -57,30 +57,34 @@ class CreateClientFragment : Fragment() {
                 validateViewModel.formularioValido.observe(viewLifecycleOwner){
                     if (it){
                         viewModel.viewModelScope.launch {
-                            viewModel.insertClient(
-                                Client(myUuidAsString,
-                                    binding.txtCreateClientName.text.toString(),
-                                    binding.txtCreateClientCuit.text.toString(),
-                                    binding.txtCreateClientContactPerson.text.toString(),
-                                    Integer.parseInt(binding.txtCreateClientPhone.text.toString()),
-                                    binding.txtCreateClientEmail.text.toString(),
-                                    binding.txtCreateClientAddress.text.toString(),
-                                    Integer.parseInt(binding.txtCreteClientPostalAddress.text.toString())
-                                )
+                            val myUuid = UUID.randomUUID()
+                            val myUuidAsString = myUuid.toString()
+                            val client=Client(myUuidAsString,
+                                binding.txtCreateClientName.text.toString(),
+                                binding.txtCreateClientCuit.text.toString(),
+                                binding.txtCreateClientContactPerson.text.toString(),
+                                Integer.parseInt(binding.txtCreateClientPhone.text.toString()),
+                                binding.txtCreateClientEmail.text.toString(),
+                                binding.txtCreateClientAddress.text.toString(),
+                                Integer.parseInt(binding.txtCreteClientPostalAddress.text.toString())
                             )
+                            viewModel.insertClient(client)
                             Log.d("MHTEST", "ESTOY EN EL TRUE del formulario valido en fragment Create Client")
                             val snackBar = Snackbar.make(
                                 binding.root,
-                                "Se agregó correctamente el cliente",
+                                "Se agregó correctamente el cliente ${client.name}",
                                 Snackbar.LENGTH_SHORT
                             )
                             snackBar.view.setBackgroundColor(Color.parseColor("#A9EF90"))
                             snackBar.show()
+                            val navController = findNavController()
+                            navController.popBackStack()
                         }
 
                     }else{
                         setErrorMsg(
                             binding.txtCreateClientName.text.toString(),
+                            binding.txtCreateClientCuit.text.toString(),
                             binding.txtCreateClientContactPerson.text.toString(),
                             binding.txtCreateClientPhone.text.toString(),
                             binding.txtCreateClientEmail.text.toString(),
@@ -96,22 +100,16 @@ class CreateClientFragment : Fragment() {
                         snackBar.view.setBackgroundColor(Color.parseColor("#DD5050"))
                         snackBar.show()
                     }
-
-
                 }
-
-
-
-
-
-
-
         }
     }
 
-    fun setErrorMsg(name: String, contactPerson: String, phoneNumber: String,email: String,address: String,  postalAdress: String) {
+    fun setErrorMsg(name: String, cuit :String, contactPerson: String, phoneNumber: String,email: String,address: String,  postalAdress: String) {
         if (!validateViewModel.isValidName(name)) {
             binding.txtErrorClientName.text = validateViewModel.errorNombre.value.toString()
+        }
+        if (!validateViewModel.isValidCUIT(cuit)) {
+            binding.txtErrorClientCuit.text = validateViewModel.errorCuit.value.toString()
         }
         if (!validateViewModel.isValidContactPerson(contactPerson)) {
             binding.txtErrorClientContactPerson.text = validateViewModel.errorContactPerson.value.toString()
@@ -122,7 +120,7 @@ class CreateClientFragment : Fragment() {
         if (!validateViewModel.isValidEmail(email)) {
             binding.txtErrorClientEmail.text = validateViewModel.errorEmail.value.toString()
         }
-        if (!validateViewModel.isValidProvider(address)) {
+        if (!validateViewModel.isValidAddress(address)) {
             binding.txtErrorClientAddress.text = validateViewModel.errorAddress.value.toString()
         }
         if (!validateViewModel.isValidWidth(postalAdress)) {
@@ -130,9 +128,12 @@ class CreateClientFragment : Fragment() {
         }
     }
 
-    fun clearErrorMsg(name: String, contactPerson: String, phoneNumber: String,email: String,address: String,  postalAdress: String){
+    fun clearErrorMsg(name: String, cuit :String, contactPerson: String, phoneNumber: String,email: String,address: String,  postalAdress: String){
         if (validateViewModel.isValidName(name)) {
             binding.txtErrorClientName.text = ""
+        }
+        if (validateViewModel.isValidCUIT(cuit)) {
+            binding.txtErrorClientCuit.text = ""
         }
         if (validateViewModel.isValidContactPerson(contactPerson)) {
             binding.txtErrorClientContactPerson.text = ""

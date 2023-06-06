@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135" />
+        app:layout_constraintVertical_bias="0.096" />
 
     <TextView
         android:id="@+id/txtErrorNombre"
@@ -28,12 +28,13 @@
         android:ems="10"
         android:textAlignment="textStart"
         android:textColor="#DD5050"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.155" />
 
     <EditText
         android:id="@+id/txtCreateClothProvider"
@@ -47,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
+        app:layout_constraintVertical_bias="0.294" />
 
     <TextView
         android:id="@+id/txtErrorClothProvider"
@@ -60,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.345" />
 
     <EditText
         android:id="@+id/txtCreateClothColor"
@@ -74,20 +75,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.462" />
-
-    <TextView
-        android:id="@+id/txtErrorClothDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textColor="#DD5050"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.404"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.386" />
 
     <TextView
         android:id="@+id/txtErrorClothColor"
@@ -100,7 +88,7 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.508" />
+        app:layout_constraintVertical_bias="0.435" />
 
     <EditText
         android:id="@+id/txtCreateClothWidth"
@@ -114,7 +102,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
+        app:layout_constraintVertical_bias="0.479" />
 
     <TextView
         android:id="@+id/txtErrorClothWidth"
@@ -127,21 +115,21 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
+        app:layout_constraintVertical_bias="0.523" />
 
     <EditText
         android:id="@+id/txtCreateClothInitialStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Stock inicial"
+        android:hint="Stock mínimo"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.775" />
+        app:layout_constraintVertical_bias="0.66" />
 
     <TextView
         android:id="@+id/txtErrorClothInitialStock"
@@ -154,7 +142,34 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.699" />
+
+    <EditText
+        android:id="@+id/txtCreateClothPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Precio"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.753" />
+
+    <TextView
+        android:id="@+id/txtErrorClothPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColor="#DD5050"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.404"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.789" />
 
     <EditText
         android:id="@+id/txtCreateClothLong"
@@ -168,7 +183,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67" />
+        app:layout_constraintVertical_bias="0.569" />
 
     <TextView
         android:id="@+id/txtErrorClothInitialLong"
@@ -181,7 +196,7 @@
         app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
+        app:layout_constraintVertical_bias="0.61" />
 
     <EditText
         android:id="@+id/txtCreateClothDesc"
@@ -195,21 +210,37 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.247" />
+        app:layout_constraintVertical_bias="0.202" />
+
+    <TextView
+        android:id="@+id/txtErrorClothDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColor="#DD5050"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.404"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.257" />
 
     <TextView
         android:id="@+id/txtCreateClothTitle"
-        android:layout_width="145dp"
-        android:layout_height="29dp"
+        android:layout_width="224dp"
+        android:layout_height="31dp"
+        android:fontFamily="sans-serif-medium"
         android:text="Nuevo Producto"
         android:textAllCaps="true"
+        android:textColor="#000000"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.052" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <Button
         android:id="@+id/btnCreateClothSave"
@@ -220,9 +251,8 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintVertical_bias="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

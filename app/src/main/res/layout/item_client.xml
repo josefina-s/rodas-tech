@@ -19,6 +19,7 @@
             android:layout_width="101dp"
             android:layout_height="27dp"
             android:text="Nombre"
+            android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

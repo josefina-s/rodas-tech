@@ -32,10 +32,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.244"
+        app:layout_constraintHorizontal_bias="0.221"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seleccionarProducto"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.214" />
 
     <NumberPicker
         android:id="@+id/numberPickerCantidad"
@@ -45,16 +45,16 @@
         android:layout_marginEnd="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.921"
         app:layout_constraintStart_toEndOf="@+id/txtProductosNewPedido3"
         app:layout_constraintTop_toBottomOf="@+id/seleccionarProducto"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.273" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/seleccionarProducto"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="283dp"
-        android:layout_height="72dp"
+        android:layout_width="339dp"
+        android:layout_height="70dp"
         android:layout_marginTop="58dp"
         android:hint="@string/labelProducto"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,10 +75,10 @@
 
     <Button
         android:id="@+id/btnConfirmar"
-        android:layout_width="176dp"
-        android:layout_height="69dp"
+        android:layout_width="339dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="68dp"
-        android:backgroundTint="#0077B6"
+        android:backgroundTint="#023E8A"
         android:text="Confirmar"
         android:textAllCaps="false"
         android:textColor="#FFF"
@@ -91,14 +91,13 @@
 
     <TextView
         android:id="@+id/txtErrorCantStock"
-        android:layout_width="342dp"
-        android:layout_height="38dp"
+        android:layout_width="339dp"
+        android:layout_height="18dp"
         android:textColor="#DD5050"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.712" />
+        app:layout_constraintVertical_bias="0.394" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

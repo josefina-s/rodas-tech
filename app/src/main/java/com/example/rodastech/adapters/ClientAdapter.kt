@@ -40,8 +40,7 @@ class ClientAdapter (
     }
 
     override fun onBindViewHolder(holder: ClientHolder, position: Int) {
-//        clientList[position].name?.let { holder.setName(it) }
-
+        clientList[position].name?.let { holder.setName(it) }
         holder.getCardImgBtnDetails().setOnClickListener {
             onClick(position)
         }

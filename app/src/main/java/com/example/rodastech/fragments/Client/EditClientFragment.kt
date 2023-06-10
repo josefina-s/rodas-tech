@@ -76,7 +76,7 @@ class EditClientFragment : Fragment() {
                         viewModel.updateClient(client)
                         Log.d("MHTEST", "ESTOY EN EL TRUE del formulario valido en fragment Edit Client")
                         val snackBar= Snackbar.make(binding.root,"Se modificó correctamente el cliente ${client.name}", Snackbar.LENGTH_SHORT)
-                        snackBar.view.setBackgroundColor(Color.parseColor("#A9EF90"))
+                        snackBar.view.setBackgroundColor(Color.parseColor("#33363F"))
                         snackBar.show()
                         val navController = findNavController()
                         navController.popBackStack()

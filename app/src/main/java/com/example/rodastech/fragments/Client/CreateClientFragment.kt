@@ -75,7 +75,7 @@ class CreateClientFragment : Fragment() {
                                 "Se agregó correctamente el cliente ${client.name}",
                                 Snackbar.LENGTH_SHORT
                             )
-                            snackBar.view.setBackgroundColor(Color.parseColor("#A9EF90"))
+                            snackBar.view.setBackgroundColor(Color.parseColor("#33363F"))
                             snackBar.show()
                             val navController = findNavController()
                             navController.popBackStack()

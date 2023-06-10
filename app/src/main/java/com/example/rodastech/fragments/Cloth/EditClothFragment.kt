@@ -82,7 +82,7 @@ class EditClothFragment : Fragment() {
                         viewModel.updateCloth(cloth)
                         Log.d("MHTEST", "ESTOY EN EL TRUE del formulario valido en fragment")
                         val snackBar=Snackbar.make(binding.root,"Se modificó correctamente el producto", Snackbar.LENGTH_SHORT)
-                        snackBar.view.setBackgroundColor(Color.parseColor("#A9EF90"))
+                        snackBar.view.setBackgroundColor(Color.parseColor("#33363F"))
                         snackBar.show()
                         val navController = findNavController()
                         navController.popBackStack()

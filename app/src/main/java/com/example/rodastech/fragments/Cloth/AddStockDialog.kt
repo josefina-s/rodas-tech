@@ -1,5 +1,6 @@
 package com.example.rodastech.fragments.Cloth
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -21,7 +22,8 @@ import kotlinx.coroutines.launch
 
 class AddStockDialog : DialogFragment(){
     lateinit var cantStock : EditText
-    lateinit var precioPorMetro : TextView
+    lateinit var precio : EditText
+//    lateinit var precioPorMetro : TextView
     lateinit var btnConfirm : Button
     lateinit var btnCancel : Button
     private val viewModel: ListClothViewModel by activityViewModels()
@@ -30,6 +32,7 @@ class AddStockDialog : DialogFragment(){
     lateinit var errorActualStock : TextView
     lateinit var cloth: Cloth
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,14 +40,17 @@ class AddStockDialog : DialogFragment(){
     ): View? {
         val view = inflater.inflate(R.layout.dialog_agrega_stock, container, false)
         cantStock=view.findViewById(R.id.txtEditStock)
-        precioPorMetro=view.findViewById(R.id.txtPriceMeter)
+//        precioPorMetro=view.findViewById(R.id.txtPriceMeter)
         btnConfirm=view.findViewById(R.id.btnConfirmStock)
         btnCancel=view.findViewById(R.id.btnCancelStock)
         errorActualStock=view.findViewById(R.id.txtErrorStockActual)
+        precio=view.findViewById(R.id.txtPriceMeter)
         cloth= viewModel.selectedCloth.value!!
-        cantStock.setText(viewModel.selectedCloth.value!!.stockActual.toString())
-        precioPorMetro.text = viewModel.selectedCloth.value!!.price.toString()
+//        precioPorMetro.text = "$ ${viewModel.selectedCloth.value!!.price.toString()}"
+//        precioPorMetro.isEnabled=false
 
+        precio.setText("$ ${viewModel.selectedCloth.value!!.price.toString()}")
+        precio.isEnabled=false
         return view
     }
 
@@ -60,7 +66,7 @@ class AddStockDialog : DialogFragment(){
             validateViewModel.formularioValido.observe(viewLifecycleOwner){
                 if (it){
                     editViewModel.viewModelScope.launch {
-                        cloth.stockActual=Integer.parseInt(cantStock.text.toString())
+                        cloth.stockActual = cloth.stockActual?.plus(Integer.parseInt(cantStock.text.toString()))
                         editViewModel.updateClothStock(cloth)
                         Toast.makeText(requireContext(), "Se actualizó el stock para el producto: ${cloth.name}", Toast.LENGTH_SHORT).show()
                         viewModel.llamarGetAllCloths()
@@ -68,10 +74,9 @@ class AddStockDialog : DialogFragment(){
                     }
                 }else {
                     setErrorMsg(cantStock.text.toString())
-                    Toast.makeText(requireContext(), "ERROR: No se pude actualizar el producto}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "ERROR: No se pude actualizar el producto", Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
         btnCancel.setOnClickListener {
             dismiss()
@@ -83,13 +88,11 @@ class AddStockDialog : DialogFragment(){
         if (!validateViewModel.isValidActualStock(actualStock)) {
             errorActualStock.text = validateViewModel.errorActualStock.value.toString()
         }
-
     }
     fun clearErrorMsg(actualStock: String) {
         if (validateViewModel.isValidActualStock(actualStock)) {
             errorActualStock.text = ""
         }
-
     }
 
 

@@ -8,26 +8,41 @@
     tools:context=".fragments.Client.EditClientFragment"
     >
 
+<!--    <TextView-->
+<!--        android:id="@+id/txtEditClientTitle"-->
+<!--        android:layout_width="236dp"-->
+<!--        android:layout_height="41dp"-->
+<!--        android:fontFamily="sans-serif-medium"-->
+<!--        android:text="EDITAR CLIENTE"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.06"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.022" />-->
+
     <TextView
         android:id="@+id/txtEditClientTitle"
-        android:layout_width="236dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="EDITAR CLIENTE"
-        android:textAllCaps="true"
+        android:text="Editar Cliente"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
     <EditText
         android:id="@+id/txtEditClientName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nombre cliente"
@@ -41,7 +56,7 @@
 
     <TextView
         android:id="@+id/txtErrorClientName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textAlignment="textStart"
@@ -55,7 +70,7 @@
 
     <EditText
         android:id="@+id/txtEditClientCuit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="CUIT"
@@ -69,7 +84,7 @@
 
     <TextView
         android:id="@+id/txtErrorClientPhone"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textAlignment="textStart"
@@ -83,7 +98,7 @@
 
     <EditText
         android:id="@+id/txtEditClientPhone"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Teléfono"
@@ -97,7 +112,7 @@
 
     <TextView
         android:id="@+id/txtErrorClientContactPerson"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textAlignment="textStart"
@@ -111,21 +126,21 @@
 
     <EditText
         android:id="@+id/txtEditClientAddress"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Dirección"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.572" />
 
     <TextView
         android:id="@+id/txtErrorClientAddress"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textAlignment="textStart"
@@ -139,7 +154,7 @@
 
     <EditText
         android:id="@+id/txtEditClientPostalAddress"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Código Postal"
@@ -153,7 +168,7 @@
 
     <TextView
         android:id="@+id/txtErrorClientCuit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textAlignment="textStart"
@@ -167,7 +182,7 @@
 
     <TextView
         android:id="@+id/txtErrorClientEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textAlignment="textStart"
@@ -181,7 +196,7 @@
 
     <EditText
         android:id="@+id/txtEditClientEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
@@ -195,7 +210,7 @@
 
     <EditText
         android:id="@+id/txtEditClientContactPerson"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Persona Contacto"
@@ -209,7 +224,7 @@
 
     <TextView
         android:id="@+id/txtErrorClientPostalAddress"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textAlignment="textStart"
@@ -223,7 +238,7 @@
 
     <Button
         android:id="@+id/btnSaveEditClient"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0077B6"
         android:text="Guardar"

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rodastech.R
 import com.example.rodastech.entities.Client
+import com.example.rodastech.entities.Cloth
 
 class ClientAdapter (
     var clientList : MutableList<Client>,
@@ -44,6 +45,11 @@ class ClientAdapter (
         holder.getCardImgBtnDetails().setOnClickListener {
             onClick(position)
         }
+    }
+
+    fun updateClientList(filteredCloths:MutableList<Client>){
+        this.clientList=filteredCloths
+        notifyDataSetChanged()
     }
 
 

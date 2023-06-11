@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Client.ClientFragment" >
 
+    <SearchView
+        android:id="@+id/searchClient"
+        android:layout_width="258dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="44dp"
+        android:queryHint="nombre del cliente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recClientList"
         android:layout_width="406dp"
@@ -16,6 +28,7 @@
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 <!--    <TextView-->
 <!--        android:id="@+id/textView8"-->

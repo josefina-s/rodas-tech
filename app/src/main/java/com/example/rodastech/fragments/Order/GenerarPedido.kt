@@ -29,8 +29,6 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class GenerarPedido : Fragment() {
-    private lateinit var dropDownClientes: AutoCompleteTextView
-    private lateinit var recyclerProductos: RecyclerView
     private lateinit var adapterProductosPedido: ProductoPedidoAdapter
     private val generarPedidoViewModel: GenerarPedidoViewModel by activityViewModels()
     private val clientesViewModel: ClientViewModel by activityViewModels()
@@ -42,15 +40,6 @@ class GenerarPedido : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v = inflater.inflate(R.layout.fragment_generar_pedido, container, false)
-//        btnAddProducto = v.findViewById(R.id.btnAgregarProducto)
-//        btnConfirmar = v.findViewById(R.id.btnConfirmarPedido)
-//        btnCancelar = v.findViewById(R.id.btnClearPedido)
-//
-//        dropDownClientes = v.findViewById(R.id.dropdownClientes)
-//        menuSeleccionarCliente = v.findViewById(R.id.seleccionarCliente)
-//        recyclerProductos = v.findViewById(R.id.productosPedido)
-
         adapterProductosPedido = ProductoPedidoAdapter(mutableListOf())
         binding = FragmentGenerarPedidoBinding.inflate(inflater, container, false)
         binding.productosPedido.adapter = adapterProductosPedido

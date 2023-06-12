@@ -65,13 +65,11 @@ class ListClothFragment  : Fragment()  {
         }
         binding.searchCloth.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                // Acciones a realizar cuando se envía la búsqueda
                 Log.d("mhtest", query.toString())
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Acciones a realizar cuando el texto de búsqueda cambia
                 val newLista=filterList.filter { cloth-> cloth.name!!.lowercase().contains(newText.toString().lowercase())}
                 adapter.updateClothList(newLista.toMutableList())
                 binding.recList.adapter=adapter

@@ -8,22 +8,7 @@
     tools:context=".fragments.Client.EditClientFragment"
     >
 
-<!--    <TextView-->
-<!--        android:id="@+id/txtEditClientTitle"-->
-<!--        android:layout_width="236dp"-->
-<!--        android:layout_height="41dp"-->
-<!--        android:fontFamily="sans-serif-medium"-->
-<!--        android:text="EDITAR CLIENTE"-->
-<!--        android:textAllCaps="true"-->
-<!--        android:textColor="#000000"-->
-<!--        android:textSize="24sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.06"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.022" />-->
+
 
     <TextView
         android:id="@+id/txtEditClientTitle"
@@ -249,5 +234,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.879" />
+
+    <ImageView
+        android:id="@+id/iconEditClient"
+        android:layout_width="30dp"
+        android:layout_height="26dp"
+        android:src="@drawable/documento"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

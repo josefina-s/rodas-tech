@@ -26,7 +26,6 @@ class ListClothViewModel : ViewModel() {
     private val _selectedCloth = MutableLiveData<Cloth>()
     val selectedCloth: MutableLiveData<Cloth> get() = _selectedCloth
 
-    //en onstart del fragment o una fn agregar que el fragment que agrega comparta este viewmodel
     fun llamarGetAllCloths(){
     viewModelScope.launch {
         val cloths=getAllCloths()
@@ -44,7 +43,6 @@ class ListClothViewModel : ViewModel() {
             val data = db.collection("cloths").get().await()
             for (cloth in data) {
                 dbClothList.add(cloth.toObject(Cloth::class.java))
-//                Log.d("MHTEST", "ESTOY EN getAllCloths2(): $cloth")
             }
         } catch (e: Exception) {
             Log.d("MHTEST", "EXCEPTION EN LIST CLOTH VIEW MODEL ${e.message}")

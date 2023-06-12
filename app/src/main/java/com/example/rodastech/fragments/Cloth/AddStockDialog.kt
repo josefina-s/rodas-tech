@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 class AddStockDialog : DialogFragment(){
     lateinit var cantStock : EditText
     lateinit var precio : EditText
-//    lateinit var precioPorMetro : TextView
     lateinit var btnConfirm : Button
     lateinit var btnCancel : Button
     private val viewModel: ListClothViewModel by activityViewModels()
@@ -40,15 +39,11 @@ class AddStockDialog : DialogFragment(){
     ): View? {
         val view = inflater.inflate(R.layout.dialog_agrega_stock, container, false)
         cantStock=view.findViewById(R.id.txtEditStock)
-//        precioPorMetro=view.findViewById(R.id.txtPriceMeter)
         btnConfirm=view.findViewById(R.id.btnConfirmStock)
         btnCancel=view.findViewById(R.id.btnCancelStock)
         errorActualStock=view.findViewById(R.id.txtErrorStockActual)
         precio=view.findViewById(R.id.txtPriceMeter)
         cloth= viewModel.selectedCloth.value!!
-//        precioPorMetro.text = "$ ${viewModel.selectedCloth.value!!.price.toString()}"
-//        precioPorMetro.isEnabled=false
-
         precio.setText("$ ${viewModel.selectedCloth.value!!.price.toString()}")
         precio.isEnabled=false
         return view

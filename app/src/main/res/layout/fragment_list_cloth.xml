@@ -8,17 +8,6 @@
     tools:context=".fragments.Cloth.ListClothFragment" >
 
 
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recList"-->
-<!--        android:layout_width="354dp"-->
-<!--        android:layout_height="513dp"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginEnd="8dp"-->
-<!--        android:layout_marginBottom="28dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.487"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 
     <SearchView
@@ -84,8 +73,20 @@
         app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.021"
+        app:layout_constraintVertical_bias="0.029"
         app:srcCompat="@drawable/logout" />
+
+    <ImageView
+        android:id="@+id/iconListCloth"
+        android:layout_width="30dp"
+        android:layout_height="26dp"
+        android:src="@drawable/listaverificacion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

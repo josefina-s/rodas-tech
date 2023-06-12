@@ -69,15 +69,6 @@
             app:layout_constraintStart_toStartOf="@+id/txtClientePedido"
             app:layout_constraintTop_toBottomOf="@+id/txtClientePedido" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/next"-->
-<!--            android:layout_width="30dp"-->
-<!--            android:layout_height="26dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:src="@drawable/next"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
 
         <ImageButton

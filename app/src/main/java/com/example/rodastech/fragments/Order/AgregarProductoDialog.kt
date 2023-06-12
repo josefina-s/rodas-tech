@@ -47,7 +47,6 @@ class AgregarProductoDialog : DialogFragment() {
             }
         })
         numPickerCantidad.setOnValueChangedListener { _, _, newValue ->
-            // Actualizar el valor actual del NumberPicker con el nuevo valor ingresado
             numPickerCantidad.value = newValue
         }
         errorStock=view.findViewById(R.id.txtErrorCantStock)

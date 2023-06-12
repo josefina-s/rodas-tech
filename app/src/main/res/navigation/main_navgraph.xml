@@ -40,9 +40,7 @@
         <action
             android:id="@+id/action_detailClothFragment_to_editClothFragment"
             app:destination="@id/editClothFragment" />
-        <action
-            android:id="@+id/action_detailClothFragment_to_deleteClothFragment"
-            app:destination="@id/deleteClothFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/clientFragment"
@@ -75,15 +73,7 @@
         android:name="com.example.rodastech.fragments.Cloth.CreateClothFragment"
         android:label="fragment_create_cloth"
         tools:layout="@layout/fragment_create_cloth" />
-    <fragment
-        android:id="@+id/deleteClothFragment"
-        android:name="com.example.rodastech.fragments.Cloth.DeleteClothFragment"
-        android:label="fragment_delete_cloth"
-        tools:layout="@layout/fragment_delete_cloth" >
-        <argument
-            android:name="cloth"
-            app:argType="com.example.rodastech.entities.Cloth" />
-    </fragment>
+
     <fragment
         android:id="@+id/detailClientFragment"
         android:name="com.example.rodastech.fragments.Client.DetailClientFragment"

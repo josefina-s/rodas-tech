@@ -37,7 +37,6 @@ class DetailClientFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val navController = findNavController()
-//        val args = DetailClientFragmentArgs.fromBundle(requireArguments()).client
 
         binding.txtNameClient.text=client.name
         binding.txtCuit.text=client.cuit
@@ -47,18 +46,9 @@ class DetailClientFragment : Fragment() {
         binding.txtPhone.text=client.telephone.toString()
         binding.txtPostalAddress.text=client.cp.toString()
 
-//        binding.txtNameClient.text=args.name
-//        binding.txtCuit.text=args.cuit
-//        binding.txtAddress.text= args.address
-//        binding.txtContactPerson.text=args.contactPerson
-//        binding.txtEmail.text=args.email
-//        binding.txtPhone.text=args.telephone.toString()
-//        binding.txtPostalAddress.text=args.cp.toString()
 
         binding.imgBtnEditClient.setOnClickListener {
             val action = DetailClientFragmentDirections.actionDetailClientFragmentToEditClientFragment()
-//                Client(args.id,args.name,args.cuit,args.contactPerson,args.telephone,args.email,args.address,args.cp)
-
             findNavController().navigate(action)
         }
 
@@ -68,9 +58,6 @@ class DetailClientFragment : Fragment() {
                 .setCancelable(true)
                 .setPositiveButton("Si"){dialogInterface, it ->
                     viewModel.viewModelScope.launch {
-//                        viewModel.deleteClient(
-//                            Client(args.id,args.name,args.cuit,args.contactPerson,args.telephone,args.email,args.address,args.cp)
-//                        )
                         viewModel.deleteClient(client)
                         navController.popBackStack()
                         Toast.makeText(requireContext(), "Se eliminó el cliente: ${client.name}", Toast.LENGTH_LONG).show()

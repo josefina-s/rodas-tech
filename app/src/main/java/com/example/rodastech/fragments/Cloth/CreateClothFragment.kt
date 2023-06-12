@@ -13,6 +13,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.rodastech.databinding.FragmentCreateClothBinding
 import com.example.rodastech.entities.Cloth
+import com.example.rodastech.entities.ProductoPedido
 //import com.example.rodastech.fragments.CreateClothFragmentArgs
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -21,6 +22,7 @@ import java.util.*
 class CreateClothFragment : Fragment() {
     private val viewModel: CreateClothViewModel by viewModels()
     private val validateViewModel: ValidateFormViewModel by activityViewModels()
+    private val listViewModel: ListClothViewModel by activityViewModels()
     private lateinit var binding: FragmentCreateClothBinding
 
 
@@ -47,6 +49,7 @@ class CreateClothFragment : Fragment() {
                 binding.txtCreateClothInitialStock.text.toString(),
                 binding.txtCreateClothPrice.text.toString()
             )
+            clearExistsErrorMsg()
 
             validateViewModel.validarFormulario(
                 binding.txtCreateClothName.text.toString(),
@@ -59,62 +62,79 @@ class CreateClothFragment : Fragment() {
                 binding.txtCreateClothPrice.text.toString()
             )
 
+            if (!clothExists(
+                    binding.txtCreateClothName.text.toString(),
+                    binding.txtCreateClothProvider.text.toString()
+                )
+            ) {
+                validateViewModel.formularioValido.observe(viewLifecycleOwner) {
+                    if (it) {
+                        viewModel.viewModelScope.launch {
+                            val myUuid = UUID.randomUUID()
+                            val myUuidAsString = myUuid.toString()
+                            val cloth = Cloth(
+                                myUuidAsString,
+                                binding.txtCreateClothName.text.toString().capitalize(),
+                                binding.txtCreateClothDesc.text.toString().capitalize(),
+                                binding.txtCreateClothColor.text.toString().capitalize(),
+                                binding.txtCreateClothProvider.text.toString().capitalize(),
+                                Integer.parseInt(binding.txtCreateClothWidth.text.toString()),
+                                Integer.parseInt(binding.txtCreateClothLong.text.toString()),
+                                Integer.parseInt(binding.txtCreateClothPrice.text.toString()),
+                                0,
+                                Integer.parseInt(binding.txtCreateClothInitialStock.text.toString())
+                            )
+                            viewModel.insertCloth(cloth)
+                            Log.d("MHTEST", "ESTOY EN EL TRUE del formulario valido en fragment")
+                            val snackBar = Snackbar.make(
+                                binding.root,
+                                "Se agregó correctamente el producto",
+                                Snackbar.LENGTH_SHORT
+                            )
+                            snackBar.view.setBackgroundColor(Color.parseColor("#33363F"))
+                            snackBar.show()
+                            val navController = findNavController()
+                            navController.popBackStack()
+                        }
 
-            validateViewModel.formularioValido.observe(viewLifecycleOwner) {
-                if (it) {
-                    viewModel.viewModelScope.launch {
-                        val myUuid = UUID.randomUUID()
-                        val myUuidAsString = myUuid.toString()
-                        val cloth=Cloth(myUuidAsString,
-                        binding.txtCreateClothName.text.toString(),
-                        binding.txtCreateClothDesc.text.toString(),
-                        binding.txtCreateClothColor.text.toString(),
-                        binding.txtCreateClothProvider.text.toString(),
-                        Integer.parseInt(binding.txtCreateClothWidth.text.toString()),
-                        Integer.parseInt(binding.txtCreateClothLong.text.toString()),
-                        Integer.parseInt(binding.txtCreateClothPrice.text.toString()),
-                        0,
-                        Integer.parseInt(binding.txtCreateClothInitialStock.text.toString()))
-                        viewModel.insertCloth(cloth)
-                        Log.d("MHTEST", "ESTOY EN EL TRUE del formulario valido en fragment")
+                    } else {
+                        setErrorMsg(
+                            binding.txtCreateClothName.text.toString(),
+                            binding.txtCreateClothDesc.text.toString(),
+                            binding.txtCreateClothColor.text.toString(),
+                            binding.txtCreateClothProvider.text.toString(),
+                            binding.txtCreateClothWidth.text.toString(),
+                            binding.txtCreateClothLong.text.toString(),
+                            binding.txtCreateClothInitialStock.text.toString(),
+                            binding.txtCreateClothPrice.text.toString()
+                        )
+                        Log.d("MHTEST", "ESTOY EN EL false del formulario valido en fragment")
                         val snackBar = Snackbar.make(
                             binding.root,
-                            "Se agregó correctamente el producto",
+                            "ERROR:No se pudo guardar el producto, revise los campos con errores",
                             Snackbar.LENGTH_SHORT
                         )
-                        snackBar.view.setBackgroundColor(Color.parseColor("#33363F"))
+                        snackBar.view.setBackgroundColor(Color.parseColor("#DD5050"))
                         snackBar.show()
-                        val navController = findNavController()
-                        navController.popBackStack()
                     }
-
-                } else {
-                    setErrorMsg(
-                        binding.txtCreateClothName.text.toString(),
-                        binding.txtCreateClothDesc.text.toString(),
-                        binding.txtCreateClothColor.text.toString(),
-                        binding.txtCreateClothProvider.text.toString(),
-                        binding.txtCreateClothWidth.text.toString(),
-                        binding.txtCreateClothLong.text.toString(),
-                        binding.txtCreateClothInitialStock.text.toString(),
-                        binding.txtCreateClothPrice.text.toString()
-                    )
-                    Log.d("MHTEST", "ESTOY EN EL false del formulario valido en fragment")
-                    val snackBar = Snackbar.make(
-                        binding.root,
-                        "ERROR:No se pudo guardar el producto, revise los campos con errores",
-                        Snackbar.LENGTH_SHORT
-                    )
-                    snackBar.view.setBackgroundColor(Color.parseColor("#DD5050"))
-                    snackBar.show()
                 }
+            }else{
+                setExistsErrorMsg()
             }
-
         }
 
     }
 
-    fun setErrorMsg(name: String, desc: String, color: String,provider: String,  width: String, long: String, initialStock: String,price: String) {
+    fun setErrorMsg(
+        name: String,
+        desc: String,
+        color: String,
+        provider: String,
+        width: String,
+        long: String,
+        initialStock: String,
+        price: String
+    ) {
         if (!validateViewModel.isValidName(name)) {
             binding.txtErrorNombre.text = validateViewModel.errorNombre.value.toString()
         }
@@ -134,11 +154,24 @@ class CreateClothFragment : Fragment() {
             binding.txtErrorClothInitialLong.text = validateViewModel.errorLong.value.toString()
         }
         if (!validateViewModel.isValidInitialStock(initialStock)) {
-            binding.txtErrorClothInitialStock.text = validateViewModel.errorInitialStock.value.toString()
+            binding.txtErrorClothInitialStock.text =
+                validateViewModel.errorInitialStock.value.toString()
         }
         if (!validateViewModel.isValidPrice(price)) {
             binding.txtErrorClothPrice.text = validateViewModel.errorPrice.value.toString()
         }
+    }
+
+    fun setExistsErrorMsg(
+    ){
+        binding.txtErrorNombre.text = "Ya existe una tela con ese nombre registrado"
+        binding.txtErrorClothProvider.text =
+            "Ya existe una tela con ese proveedor registrado"
+    }
+    fun clearExistsErrorMsg(
+    ){
+        binding.txtErrorNombre.text = ""
+        binding.txtErrorClothProvider.text =""
     }
 
 
@@ -178,4 +211,16 @@ class CreateClothFragment : Fragment() {
         }
     }
 
+    fun clothExists(name: String, provider: String): Boolean {
+        var filterList: MutableList<Cloth>
+        filterList = listViewModel.cloths.value!!.filter { cloth ->
+            cloth.name!!.lowercase().contains(name) && cloth.provider!!.lowercase()
+                .contains(provider)
+        } as MutableList<Cloth>
+        if (filterList.isNullOrEmpty()) {
+            return false
+        } else {
+            return true
+        }
+    }
 }

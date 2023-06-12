@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rodastech.entities.Client
+import com.example.rodastech.entities.Cloth
 import com.example.rodastech.entities.Pedido
 import com.example.rodastech.entities.ProductoPedido
 import com.google.firebase.firestore.ktx.firestore
@@ -59,19 +60,44 @@ class GenerarPedidoViewModel : ViewModel() {
         }
     }
 
-    suspend fun insertProductosPedidos(productosPedidos: MutableList<ProductoPedido>, id : String) = coroutineScope {
-        try {
-            for (p in productosPedidos){
-                val insertMap = mapOf(
-                    "nombre" to p.nombre,
-                    "metros" to p.metros,
-                    "id" to id
-                )
-                db.collection("productosPedidos").add(insertMap).await()
+    suspend fun insertProductosPedidos(productosPedidos: MutableList<ProductoPedido>, id: String) =
+        coroutineScope {
+            try {
+                for (p in productosPedidos) {
+                    val insertMap = mapOf(
+                        "nombre" to p.nombre,
+                        "metros" to p.metros,
+                        "id" to id,
+                        "idCloth" to p.idCloth
+                    )
+                    db.collection("productosPedidos").add(insertMap).await()
+                    updateStockProductoPedido(p.idCloth!!,p.metros)
+                }
+
+            } catch (e: Exception) {
+                Log.d("MHTEST", "EXCEPTION EN CREATE CLOTH VIEW MODEL ${e.message}")
             }
-        } catch (e: Exception) {
-            Log.d("MHTEST", "EXCEPTION EN CREATE CLOTH VIEW MODEL ${e.message}")
         }
-    }
+
+    suspend fun updateStockProductoPedido(idCloth : String, metrosPedidos:Int) =
+        coroutineScope {
+            try {
+                    val clothQuery =
+                        db.collection("cloths").whereEqualTo("id", idCloth)
+                            .get()
+                            .await()
+                    for (dbCloth in clothQuery) {
+                        var resultStock= dbCloth.toObject(Cloth::class.java).stockActual?.minus(metrosPedidos)
+                        val updateMap = mapOf(
+                            "stockActual" to  resultStock
+                        )
+                        db.collection("cloths").document(dbCloth.id)
+                            .update(updateMap)
+                            .await()
+                    }
+            } catch (e: Exception) {
+                Log.d("MHTEST", "EXCEPTION EN updateStockProductosPedidos ${e.message}")
+            }
+        }
 
 }

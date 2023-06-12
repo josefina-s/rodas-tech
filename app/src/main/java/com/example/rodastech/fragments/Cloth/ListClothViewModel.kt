@@ -35,6 +35,15 @@ class ListClothViewModel : ViewModel() {
     fun setSelectedCloth(cloth: Cloth) {
         _selectedCloth.value = cloth
     }
+    fun clothExists(name:String, prov:String){
+        val newLista=
+            _cloths.value?.filter { cloth-> cloth.name!!.lowercase().contains(name) && cloth.provider!!.lowercase().contains(prov)}
+        if (newLista.isNullOrEmpty()){
+            Log.d("mhtest", "no existe")
+        }else{
+            Log.d("mhtest", "si existe")
+        }
+    }
 
     suspend fun getAllCloths(): MutableList<Cloth> {
         lateinit var dbClothList: MutableList<Cloth>

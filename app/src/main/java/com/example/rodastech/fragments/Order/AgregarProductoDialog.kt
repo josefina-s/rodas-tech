@@ -66,18 +66,22 @@ class AgregarProductoDialog : DialogFragment() {
             val productoSeleccionado = parent.getItemAtPosition(position) as Cloth
             idCloth= productoSeleccionado.id.toString()
             nuevoProducto.nombre = productoSeleccionado.name
+            nuevoProducto.idCloth=productoSeleccionado.id
         }
 
         btnConfirmarProducto.setOnClickListener {
             agregarMetros()
-            if (isValidStock(idCloth)){
-                pedidoViewModel.agregarProducto(nuevoProducto)
-                val msj = "Se agregó el producto: ${nuevoProducto.nombre} con éxito"
-                Log.d("josie_test", msj)
-                dropDownProductos.setText("", false)
-                dismiss()
-                Toast.makeText(requireContext(), msj, Toast.LENGTH_SHORT).show()
+            if (isAddedProduct(nuevoProducto.nombre.toString())){
+                if (isValidStock(idCloth)){
+                    pedidoViewModel.agregarProducto(nuevoProducto)
+                    val msj = "Se agregó el producto: ${nuevoProducto.nombre} con éxito"
+                    Log.d("josie_test", msj)
+                    dropDownProductos.setText("", false)
+                    dismiss()
+                    Toast.makeText(requireContext(), msj, Toast.LENGTH_SHORT).show()
+                }
             }
+
 
         }
     }
@@ -108,6 +112,21 @@ class AgregarProductoDialog : DialogFragment() {
                 }
             }
         return true
+    }
+    fun isAddedProduct(name :String) :Boolean{
+        var filterList: MutableList<ProductoPedido>
+
+        if( pedidoViewModel.listaProductos.value.isNullOrEmpty()){
+            return true
+        }else{
+            filterList= pedidoViewModel.listaProductos.value!!.filter {p->p.nombre!!.lowercase().contains(name.lowercase()) } as MutableList<ProductoPedido>
+        }
+        if (filterList.isNullOrEmpty()){
+            return true
+        }else{
+            errorStock.text="No se puede ingresar más de una vez el producto, si quiere editar los metros solicitados, limpie la pantalla y vuelva a ingresar"
+            return false
+        }
     }
 
 }

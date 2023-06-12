@@ -38,6 +38,8 @@ class EditClientFragment : Fragment() {
         binding.txtEditClientEmail.setText(client.email)
         binding.txtEditClientAddress.setText(client.address)
         binding.txtEditClientPostalAddress.setText(client.cp.toString())
+        binding.txtEditClientName.isEnabled=false
+        binding.txtEditClientCuit.isEnabled=false
         return binding.root
     }
 

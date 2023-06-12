@@ -39,6 +39,7 @@ class ValidateFormViewModel : ViewModel(){
     val formularioValido = MutableLiveData<Boolean>()
 
 
+
     fun validarFormulario(name: String, desc: String, provider: String, color: String, width: String, long: String, initialStock: String, price: String) {
         formularioValido.value = isValidName(name)&&isValidDesc(desc)&&isValidProvider(provider)&&isValidColor(color)&&isValidWidth(width)&&isValidLong(long)&&isValidInitialStock(initialStock)&&isValidPrice(price)
     }
@@ -247,5 +248,23 @@ class ValidateFormViewModel : ViewModel(){
             return false
         }
     }
+
+
+//    suspend fun getCloth(nombre:String, proveedor:String): MutableList<Cloth> {
+//        lateinit var dbClothList: MutableList<Cloth>
+//        dbClothList = mutableListOf()
+//        try {
+//            val data = db.collection("cloths")
+//                .whereEqualTo("name",nombre).whereEqualTo("provider",proveedor)
+//                .get()
+//                .await()
+//            for (cloth in data) {
+//                dbClothList.add(cloth.toObject(Cloth::class.java))
+//            }
+//        } catch (e: Exception) {
+//            Log.d("MHTEST", "EXCEPTION EN LIST CLOTH VIEW MODEL ${e.message}")
+//        }
+//        return dbClothList
+//    }
 
 }

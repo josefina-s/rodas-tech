@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class ProductoPedido(
     var nombre: String?="",
     var metros: Int=0,
-    var idPedido : String?=""
+    var idPedido : String?="",
+    var idCloth : String?=""
 ) : Parcelable {
 }

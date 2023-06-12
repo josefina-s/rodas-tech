@@ -128,6 +128,8 @@ class GenerarPedido : Fragment() {
 
     private fun limpiarFormulario() {
         binding.dropdownClientes.text = null
+        binding.txtErrorProductsOrder.text = ""
+        binding.txtErrorClientOrder.text = ""
         generarPedidoViewModel.limpiarPedido()
     }
 

@@ -42,6 +42,8 @@ class EditClothFragment : Fragment() {
         binding.txtEditClothProvider.setText(cloth.provider)
         binding.txtEditClothStock.setText(cloth.stockMinimo.toString())
         binding.txtEditClothPrice.setText(cloth.price.toString())
+        binding.txtEditClothName.isEnabled=false
+        binding.txtEditClothProvider.isEnabled=false
         return binding.root
     }
 

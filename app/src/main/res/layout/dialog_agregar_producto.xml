@@ -91,13 +91,14 @@
 
     <TextView
         android:id="@+id/txtErrorCantStock"
-        android:layout_width="339dp"
-        android:layout_height="18dp"
+        android:layout_width="337dp"
+        android:layout_height="63dp"
+        android:textAlignment="center"
         android:textColor="#DD5050"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.394" />
+        app:layout_constraintVertical_bias="0.401" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,10 +27,10 @@ class CreateClientViewModel : ViewModel() {
                 "cp" to client.cp
             )
             db.collection("clients").add(insertMap).await()
-            Log.d("MHTEST", "ESTOY EN CREATE CLIENT VIEW MODEL ${client.name.toString()}")
+            Log.d("RODASTECH", "ESTOY EN CREATE CLIENT VIEW MODEL ${client.name.toString()}")
 
         } catch (e: Exception) {
-            Log.d("MHTEST", "EXCEPTION EN CREATE CLIENT VIEW MODEL ${e.message}")
+            Log.d("RODASTECH", "EXCEPTION EN CREATE CLIENT VIEW MODEL ${e.message}")
         }
     }
 }

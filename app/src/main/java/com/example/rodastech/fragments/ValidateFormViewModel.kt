@@ -1,7 +1,5 @@
-package com.example.rodastech.fragments.Cloth
+package com.example.rodastech.fragments
 
-import android.telephony.PhoneNumberUtils
-import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,8 +7,6 @@ import com.example.rodastech.entities.Client
 import com.example.rodastech.entities.Cloth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.tasks.await
 
 class ValidateFormViewModel : ViewModel(){
 
@@ -248,23 +244,5 @@ class ValidateFormViewModel : ViewModel(){
             return false
         }
     }
-
-
-//    suspend fun getCloth(nombre:String, proveedor:String): MutableList<Cloth> {
-//        lateinit var dbClothList: MutableList<Cloth>
-//        dbClothList = mutableListOf()
-//        try {
-//            val data = db.collection("cloths")
-//                .whereEqualTo("name",nombre).whereEqualTo("provider",proveedor)
-//                .get()
-//                .await()
-//            for (cloth in data) {
-//                dbClothList.add(cloth.toObject(Cloth::class.java))
-//            }
-//        } catch (e: Exception) {
-//            Log.d("MHTEST", "EXCEPTION EN LIST CLOTH VIEW MODEL ${e.message}")
-//        }
-//        return dbClothList
-//    }
 
 }

@@ -56,7 +56,7 @@ class ClientFragment : Fragment() {
 
         binding.searchClient.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                Log.d("mhtest", query.toString())
+                Log.d("RODASTECH", query.toString())
                 return true
             }
 
@@ -64,7 +64,7 @@ class ClientFragment : Fragment() {
                 val newLista=filterList.filter { cloth-> cloth.name!!.lowercase().contains(newText.toString().lowercase())}
                 adapter.updateClientList(newLista.toMutableList())
                 binding.recClientList.adapter=adapter
-                Log.d("mhtest", newText.toString())
+                Log.d("RODASTECH", newText.toString())
                 return true
             }
         })

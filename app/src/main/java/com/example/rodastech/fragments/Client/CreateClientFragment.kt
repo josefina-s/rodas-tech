@@ -13,8 +13,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.rodastech.databinding.FragmentCreateClientBinding
 import com.example.rodastech.entities.Client
-import com.example.rodastech.entities.Cloth
-import com.example.rodastech.fragments.Cloth.ValidateFormViewModel
+import com.example.rodastech.fragments.ValidateFormViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import java.util.*
@@ -57,13 +56,19 @@ class CreateClientFragment : Fragment() {
                 binding.txtCreateClientAddress.text.toString(),
                 binding.txtCreteClientPostalAddress.text.toString()
             )
-            if (!clientExists(
-                    binding.txtCreateClientName.text.toString(),
-                    binding.txtCreateClientCuit.text.toString()
-                )
-            ) {
-                validateViewModel.formularioValido.observe(viewLifecycleOwner) {
-                    if (it) {
+            val existsClient=clientExists(
+                binding.txtCreateClientName.text.toString(),
+                binding.txtCreateClientCuit.text.toString()
+            )
+            if (existsClient){
+                setExistsErrorMsg()
+            }else{
+                clearExistsErrorMsg()
+            }
+
+            validateViewModel.formularioValido.observe(viewLifecycleOwner) {
+                if (it) {
+                    if (!existsClient) {
                         viewModel.viewModelScope.launch {
                             val myUuid = UUID.randomUUID()
                             val myUuidAsString = myUuid.toString()
@@ -79,7 +84,7 @@ class CreateClientFragment : Fragment() {
                             )
                             viewModel.insertClient(client)
                             Log.d(
-                                "MHTEST",
+                                "RODASTECH",
                                 "ESTOY EN EL TRUE del formulario valido en fragment Create Client"
                             )
                             val snackBar = Snackbar.make(
@@ -92,34 +97,32 @@ class CreateClientFragment : Fragment() {
                             val navController = findNavController()
                             navController.popBackStack()
                         }
-
                     } else {
-                        setErrorMsg(
-                            binding.txtCreateClientName.text.toString(),
-                            binding.txtCreateClientCuit.text.toString(),
-                            binding.txtCreateClientContactPerson.text.toString(),
-                            binding.txtCreateClientPhone.text.toString(),
-                            binding.txtCreateClientEmail.text.toString(),
-                            binding.txtCreateClientAddress.text.toString(),
-                            binding.txtCreteClientPostalAddress.text.toString()
-                        )
-                        Log.d(
-                            "MHTEST",
-                            "ESTOY EN EL false del formulario validar en fragment create client"
-                        )
-                        val snackBar = Snackbar.make(
-                            binding.root,
-                            "ERROR:No se pudo guardar el cliente, revise los campos con errores",
-                            Snackbar.LENGTH_SHORT
-                        )
-                        snackBar.view.setBackgroundColor(Color.parseColor("#DD5050"))
-                        snackBar.show()
+                        setExistsErrorMsg()
                     }
+                } else {
+                    setErrorMsg(
+                        binding.txtCreateClientName.text.toString(),
+                        binding.txtCreateClientCuit.text.toString(),
+                        binding.txtCreateClientContactPerson.text.toString(),
+                        binding.txtCreateClientPhone.text.toString(),
+                        binding.txtCreateClientEmail.text.toString(),
+                        binding.txtCreateClientAddress.text.toString(),
+                        binding.txtCreteClientPostalAddress.text.toString()
+                    )
+                    Log.d(
+                        "RODASTECH",
+                        "ESTOY EN EL false del formulario validar en fragment create client"
+                    )
+                    val snackBar = Snackbar.make(
+                        binding.root,
+                        "ERROR:No se pudo guardar el cliente, revise los campos con errores",
+                        Snackbar.LENGTH_SHORT
+                    )
+                    snackBar.view.setBackgroundColor(Color.parseColor("#DD5050"))
+                    snackBar.show()
                 }
-            } else {
-                setExistsErrorMsg()
             }
-
         }
     }
 
@@ -198,16 +201,14 @@ class CreateClientFragment : Fragment() {
 
     fun clearExistsErrorMsg(
     ) {
-        binding.txtErrorClientCuit.text = ""
+        binding.txtErrorClientName.text = ""
         binding.txtErrorClientCuit.text = ""
     }
 
     fun clientExists(name: String, cuit: String): Boolean {
         var filterList: MutableList<Client>
-        val cuitLimpio = cuit.replace("-", "")
         filterList = listViewModel.dbClients.value!!.filter { client ->
-            client.name!!.lowercase().contains(name) && client.cuit!!.replace("-", "")
-                .contains(cuit)
+            client.name!!.trim().lowercase() == name.trim().lowercase() && client.cuit!!.trim().replace("-", "") == cuit.trim().replace("-", "")
         } as MutableList<Client>
         if (filterList.isNullOrEmpty()) {
             return false

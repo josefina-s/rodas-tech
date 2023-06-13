@@ -7,16 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
-import com.example.rodastech.R
-import com.example.rodastech.databinding.FragmentDetailClothBinding
 import com.example.rodastech.databinding.FragmentEditClothBinding
 import com.example.rodastech.entities.Cloth
+import com.example.rodastech.fragments.ValidateFormViewModel
 //import com.example.rodastech.fragments.EditClothFragmentArgs
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -82,7 +78,7 @@ class EditClothFragment : Fragment() {
                         cloth.stockMinimo=Integer.parseInt(binding.txtEditClothStock.text.toString())
                         cloth.price=Integer.parseInt(binding.txtEditClothPrice.text.toString())
                         viewModel.updateCloth(cloth)
-                        Log.d("MHTEST", "ESTOY EN EL TRUE del formulario valido en fragment")
+                        Log.d("RODASTECH", "ESTOY EN EL TRUE del formulario valido en fragment")
                         val snackBar=Snackbar.make(binding.root,"Se modificó correctamente el producto", Snackbar.LENGTH_SHORT)
                         snackBar.view.setBackgroundColor(Color.parseColor("#33363F"))
                         snackBar.show()
@@ -101,7 +97,7 @@ class EditClothFragment : Fragment() {
                         binding.txtEditClothStock.text.toString(),
                         binding.txtEditClothPrice.text.toString()
                     )
-                    Log.d("MHTEST", "ESTOY EN EL false del formulario valido en fragment")
+                    Log.d("RODASTECH", "ESTOY EN EL false del formulario valido en fragment")
                     val snackBar=Snackbar.make(binding.root,"ERROR:No se pudo modificar el producto, revise los campos con errores", Snackbar.LENGTH_SHORT)
                     snackBar.view.setBackgroundColor(Color.parseColor("#DD5050"))
                     snackBar.show()

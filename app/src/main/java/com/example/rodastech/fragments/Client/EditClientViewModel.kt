@@ -14,7 +14,7 @@ class EditClientViewModel : ViewModel() {
     suspend fun updateClient(client: Client)= coroutineScope {
         try {
             val clothQuery=db.collection("clients").whereEqualTo("id",client.id.toString()).get().await()
-            Log.d("MHTEST", "ESTOY EN get id num EDIT CLIENT")
+            Log.d("RODASTECH", "ESTOY EN get id num EDIT CLIENT")
             val updateMap = mapOf(
                 "id" to client.id,
                 "name" to client.name.toString(),
@@ -26,12 +26,12 @@ class EditClientViewModel : ViewModel() {
                 "cp" to client.cp
             )
             for (dbClient in clothQuery){
-                Log.d("MHTEST", "ESTOY EN for para EDIT CLIENT ${dbClient.id}")
+                Log.d("RODASTECH", "ESTOY EN for para EDIT CLIENT ${dbClient.id}")
                 db.collection("clients").document(dbClient.id).update(updateMap).await()
 
             }
         }catch (e:Exception){
-            Log.d("MHTEST", "EXCEPTION EN EDIT CLIENT VIEW MODEL ${e.message}")
+            Log.d("RODASTECH", "EXCEPTION EN EDIT CLIENT VIEW MODEL ${e.message}")
         }
     }
 

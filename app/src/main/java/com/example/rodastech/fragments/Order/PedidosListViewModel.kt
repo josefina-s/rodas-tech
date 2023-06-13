@@ -65,7 +65,7 @@ class PedidosListViewModel : ViewModel() {
                 dbPedidosList.add(pedido.toObject(Pedido::class.java))
             }
         } catch (e: Exception) {
-            Log.d("MHTEST", "EXCEPTION EN LIST PEDIDO VIEW MODEL ${e.message}")
+            Log.d("RODASTECH", "EXCEPTION EN LIST PEDIDO VIEW MODEL ${e.message}")
         }
         return dbPedidosList
     }
@@ -88,7 +88,7 @@ class PedidosListViewModel : ViewModel() {
                 dbProductosPedidosList.add(pPedidos.toObject(ProductoPedido::class.java))
             }
         } catch (e: Exception) {
-            Log.d("MHTEST", "EXCEPTION EN LIST PEDIDO VIEW MODEL ${e.message}")
+            Log.d("RODASTECH", "EXCEPTION EN LIST PEDIDO VIEW MODEL ${e.message}")
         }
         return dbProductosPedidosList
     }

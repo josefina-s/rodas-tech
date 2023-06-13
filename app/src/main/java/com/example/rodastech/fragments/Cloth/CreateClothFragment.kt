@@ -13,7 +13,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.rodastech.databinding.FragmentCreateClothBinding
 import com.example.rodastech.entities.Cloth
-import com.example.rodastech.entities.ProductoPedido
+import com.example.rodastech.fragments.ValidateFormViewModel
 //import com.example.rodastech.fragments.CreateClothFragmentArgs
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -61,14 +61,17 @@ class CreateClothFragment : Fragment() {
                 binding.txtCreateClothInitialStock.text.toString(),
                 binding.txtCreateClothPrice.text.toString()
             )
+            val existCloth=clothExists(binding.txtCreateClothName.text.toString(),binding.txtCreateClothProvider.text.toString())
+            if (existCloth){
+                setExistsErrorMsg()
+            }else{
+                clearExistsErrorMsg()
+            }
 
-            if (!clothExists(
-                    binding.txtCreateClothName.text.toString(),
-                    binding.txtCreateClothProvider.text.toString()
-                )
-            ) {
-                validateViewModel.formularioValido.observe(viewLifecycleOwner) {
-                    if (it) {
+
+            validateViewModel.formularioValido.observe(viewLifecycleOwner) {
+                if (it) {
+                    if (!existCloth) {
                         viewModel.viewModelScope.launch {
                             val myUuid = UUID.randomUUID()
                             val myUuidAsString = myUuid.toString()
@@ -85,7 +88,7 @@ class CreateClothFragment : Fragment() {
                                 Integer.parseInt(binding.txtCreateClothInitialStock.text.toString())
                             )
                             viewModel.insertCloth(cloth)
-                            Log.d("MHTEST", "ESTOY EN EL TRUE del formulario valido en fragment")
+                            Log.d("RODASTECH", "ESTOY EN EL TRUE del formulario valido en fragment")
                             val snackBar = Snackbar.make(
                                 binding.root,
                                 "Se agregó correctamente el producto",
@@ -96,30 +99,29 @@ class CreateClothFragment : Fragment() {
                             val navController = findNavController()
                             navController.popBackStack()
                         }
-
                     } else {
-                        setErrorMsg(
-                            binding.txtCreateClothName.text.toString(),
-                            binding.txtCreateClothDesc.text.toString(),
-                            binding.txtCreateClothColor.text.toString(),
-                            binding.txtCreateClothProvider.text.toString(),
-                            binding.txtCreateClothWidth.text.toString(),
-                            binding.txtCreateClothLong.text.toString(),
-                            binding.txtCreateClothInitialStock.text.toString(),
-                            binding.txtCreateClothPrice.text.toString()
-                        )
-                        Log.d("MHTEST", "ESTOY EN EL false del formulario valido en fragment")
-                        val snackBar = Snackbar.make(
-                            binding.root,
-                            "ERROR:No se pudo guardar el producto, revise los campos con errores",
-                            Snackbar.LENGTH_SHORT
-                        )
-                        snackBar.view.setBackgroundColor(Color.parseColor("#DD5050"))
-                        snackBar.show()
+                        setExistsErrorMsg()
                     }
+                } else {
+                    setErrorMsg(
+                        binding.txtCreateClothName.text.toString(),
+                        binding.txtCreateClothDesc.text.toString(),
+                        binding.txtCreateClothColor.text.toString(),
+                        binding.txtCreateClothProvider.text.toString(),
+                        binding.txtCreateClothWidth.text.toString(),
+                        binding.txtCreateClothLong.text.toString(),
+                        binding.txtCreateClothInitialStock.text.toString(),
+                        binding.txtCreateClothPrice.text.toString()
+                    )
+                    Log.d("RODASTECH", "ESTOY EN EL false del formulario valido en fragment")
+                    val snackBar = Snackbar.make(
+                        binding.root,
+                        "ERROR:No se pudo guardar el producto, revise los campos con errores",
+                        Snackbar.LENGTH_SHORT
+                    )
+                    snackBar.view.setBackgroundColor(Color.parseColor("#DD5050"))
+                    snackBar.show()
                 }
-            }else{
-                setExistsErrorMsg()
             }
         }
 
@@ -162,18 +164,6 @@ class CreateClothFragment : Fragment() {
         }
     }
 
-    fun setExistsErrorMsg(
-    ){
-        binding.txtErrorNombre.text = "Ya existe una tela con ese nombre registrado"
-        binding.txtErrorClothProvider.text =
-            "Ya existe una tela con ese proveedor registrado"
-    }
-    fun clearExistsErrorMsg(
-    ){
-        binding.txtErrorNombre.text = ""
-        binding.txtErrorClothProvider.text =""
-    }
-
 
     fun clearErrorMsg(
         name: String,
@@ -211,11 +201,22 @@ class CreateClothFragment : Fragment() {
         }
     }
 
+    fun setExistsErrorMsg(
+    ) {
+        binding.txtErrorNombre.text = "Ya existe una tela con ese nombre registrado"
+        binding.txtErrorClothProvider.text ="Ya existe una tela con ese proveedor registrado"
+    }
+
+    fun clearExistsErrorMsg(
+    ) {
+        binding.txtErrorNombre.text = ""
+        binding.txtErrorClothProvider.text = ""
+    }
+
     fun clothExists(name: String, provider: String): Boolean {
         var filterList: MutableList<Cloth>
         filterList = listViewModel.cloths.value!!.filter { cloth ->
-            cloth.name!!.lowercase().contains(name) && cloth.provider!!.lowercase()
-                .contains(provider)
+            cloth.name!!.trim().lowercase()==name.trim().lowercase() && cloth.provider!!.trim().lowercase() == provider.trim().lowercase()
         } as MutableList<Cloth>
         if (filterList.isNullOrEmpty()) {
             return false

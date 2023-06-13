@@ -75,7 +75,7 @@ class AgregarProductoDialog : DialogFragment() {
                 if (isValidStock(idCloth)){
                     pedidoViewModel.agregarProducto(nuevoProducto)
                     val msj = "Se agregó el producto: ${nuevoProducto.nombre} con éxito"
-                    Log.d("josie_test", msj)
+                    Log.d("RODASTECH", msj)
                     dropDownProductos.setText("", false)
                     dismiss()
                     Toast.makeText(requireContext(), msj, Toast.LENGTH_SHORT).show()

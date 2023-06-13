@@ -1,9 +1,7 @@
 package com.example.rodastech.fragments.Cloth
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
 import com.example.rodastech.R
 import com.example.rodastech.entities.Cloth
-import com.google.android.material.snackbar.Snackbar
+import com.example.rodastech.fragments.ValidateFormViewModel
 import kotlinx.coroutines.launch
 
 

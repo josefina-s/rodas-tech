@@ -16,14 +16,14 @@ class DetailClothViewModel : ViewModel() {
     suspend fun deleteCloth(cloth: Cloth)= coroutineScope {
         try {
             val clothQuery=db.collection("cloths").whereEqualTo("id",cloth.id.toString()).get().await()
-            Log.d("MHTEST", "ESTOY EN get id num")
+            Log.d("RODASTECH", "ESTOY EN get id num")
 
             for (dbCloth in clothQuery){
-                Log.d("MHTEST", "ESTOY EN for para delete ${dbCloth.id}")
+                Log.d("RODASTECH", "ESTOY EN for para delete ${dbCloth.id}")
                 db.collection("cloths").document(dbCloth.id).delete().await()
             }
         }catch (e:Exception){
-            Log.d("MHTEST", "ESTOY EN exception del delete ${e.message}")
+            Log.d("RODASTECH", "ESTOY EN exception del delete ${e.message}")
         }
     }
 

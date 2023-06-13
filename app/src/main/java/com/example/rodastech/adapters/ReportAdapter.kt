@@ -3,6 +3,7 @@ package com.example.rodastech.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +32,11 @@ class ReportAdapter (
             return v.findViewById(R.id.reportCard)
         }
 
+        fun getImgBtnDetails(): ImageButton {
+            return v.findViewById(R.id.imgBtnDetails)
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReportHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_report, parent, false)
@@ -45,8 +50,9 @@ class ReportAdapter (
     override fun onBindViewHolder(holder: ReportHolder, position: Int) {
         holder.setName(reportList[position].name)
 
-        holder.getCard().setOnClickListener {
-            onClick(position)
+
+        holder.getImgBtnDetails().setOnClickListener {
+            onClick(position)  // Realiza la misma acción que al tocar la tarjeta
         }
     }
 

@@ -93,4 +93,18 @@ class PedidosListViewModel : ViewModel() {
         return dbProductosPedidosList
     }
 
+    suspend fun pGetAllProductosPedidos(): MutableList<ProductoPedido> {
+        lateinit var dbProductosPedidosList: MutableList<ProductoPedido>
+        dbProductosPedidosList = mutableListOf()
+        try {
+            val data = db.collection("productosPedidos").get().await()
+            for (pPedidos in data) {
+                dbProductosPedidosList.add(pPedidos.toObject(ProductoPedido::class.java))
+            }
+        } catch (e: Exception) {
+            Log.d("MHTEST", "EXCEPTION EN LIST PEDIDO VIEW MODEL ${e.message}")
+        }
+        return dbProductosPedidosList
+    }
+
 }

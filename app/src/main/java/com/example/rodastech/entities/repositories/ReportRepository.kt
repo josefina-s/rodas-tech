@@ -8,6 +8,10 @@ class ReportRepository() {
     init {
         reports.add(Report("Telas por stock"))
         reports.add(Report("Telas por precio"))
+        reports.add(Report("Telas por color"))
+        reports.add(Report("Telas por tamaño"))
+        reports.add(Report("Clientes con más pedidos"))
+
     }
 
 }

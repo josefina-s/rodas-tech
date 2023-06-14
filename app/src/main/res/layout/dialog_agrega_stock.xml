@@ -7,31 +7,36 @@
     android:minWidth="500dp"
     android:padding="30dp">
 
-    <TextView
-        android:id="@+id/txtTitleAddStock"
-        android:layout_width="263dp"
-        android:layout_height="49dp"
-        android:text="Agregar al stock"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
+        android:id="@+id/txtTitleAddStock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Agregar al stock"
+        android:textColor="#023E8A"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
         android:id="@+id/txtPriceMeter"
-        android:layout_width="119dp"
-        android:layout_height="30dp"
+        android:layout_width="138dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:paddingTop="6dp"
+        android:text="test"
+        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229" />
+        app:layout_constraintVertical_bias="0.225" />
 
     <Button
         android:id="@+id/btnCancelStock"
@@ -51,7 +56,7 @@
         android:id="@+id/btnConfirmStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#A9EF90"
+        android:backgroundTint="#023E8A"
         android:text="Confirmar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,10 +67,10 @@
 
     <EditText
         android:id="@+id/txtEditStock"
-        android:layout_width="124dp"
-        android:layout_height="43dp"
+        android:layout_width="138dp"
+        android:layout_height="42dp"
         android:ems="10"
-        android:hint="Stock Actual"
+        android:hint="Stock a agregar"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,8 +81,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="138dp"
+        android:layout_height="20dp"
         android:text="Cantidad metros"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,20 +93,20 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="117dp"
+        android:layout_width="138dp"
         android:layout_height="18dp"
         android:text="Precio por metro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.989"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.186" />
 
     <TextView
         android:id="@+id/txtErrorStockActual"
-        android:layout_width="127dp"
-        android:layout_height="18dp"
+        android:layout_width="138dp"
+        android:layout_height="19dp"
         android:textColor="#DD5050"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -109,5 +114,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29" />
+        app:layout_constraintVertical_bias="0.3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

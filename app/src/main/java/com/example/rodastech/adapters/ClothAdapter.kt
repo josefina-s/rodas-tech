@@ -74,4 +74,9 @@ class ClothAdapter (
         }
 
     }
+
+    fun updateClothList(filteredCloths:MutableList<Cloth>){
+        this.clothList=filteredCloths
+        notifyDataSetChanged()
+    }
 }

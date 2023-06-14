@@ -22,7 +22,7 @@ class EditClothViewModel : ViewModel() {
     suspend fun updateCloth(cloth: Cloth)= coroutineScope {
         try {
             val clothQuery=db.collection("cloths").whereEqualTo("id",cloth.id.toString()).get().await()
-            Log.d("MHTEST", "ESTOY EN get id num")
+            Log.d("RODASTECH", "ESTOY EN get id num")
             val updateMap= mapOf(
                 "name" to cloth.name.toString(),
                 "color" to cloth.color.toString(),
@@ -35,12 +35,12 @@ class EditClothViewModel : ViewModel() {
                 "stockMinimo" to cloth.stockMinimo
             )
             for (dbCloth in clothQuery){
-                Log.d("MHTEST", "ESTOY EN for para update ${dbCloth.id}")
+                Log.d("RODASTECH", "ESTOY EN for para update ${dbCloth.id}")
                 db.collection("cloths").document(dbCloth.id).update(updateMap).await()
 
             }
         }catch (e:Exception){
-            Log.d("MHTEST", "EXCEPTION EN EDIT CLOTH VIEW MODEL ${e.message}")
+            Log.d("RODASTECH", "EXCEPTION EN EDIT CLOTH VIEW MODEL ${e.message}")
         }
     }
 
@@ -48,17 +48,15 @@ class EditClothViewModel : ViewModel() {
     suspend fun updateClothStock(cloth: Cloth)= coroutineScope {
         try {
             val clothQuery=db.collection("cloths").whereEqualTo("id",cloth.id.toString()).get().await()
-            Log.d("MHTEST", "ESTOY EN get id num")
             val updateMap= mapOf(
                 "stockActual" to cloth.stockActual,
             )
             for (dbCloth in clothQuery){
-                Log.d("MHTEST", "ESTOY EN for para update ${dbCloth.id}")
+                Log.d("RODASTECH", "ESTOY EN for para update ${dbCloth.id}")
                 db.collection("cloths").document(dbCloth.id).update(updateMap).await()
-
             }
         }catch (e:Exception){
-            Log.d("MHTEST", "EXCEPTION EN EDIT CLOTH VIEW MODEL ${e.message}")
+            Log.d("RODASTECH", "EXCEPTION EN EDIT CLOTH VIEW MODEL ${e.message}")
         }
     }
 

@@ -1,7 +1,5 @@
-package com.example.rodastech.fragments.Cloth
+package com.example.rodastech.fragments
 
-import android.telephony.PhoneNumberUtils
-import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,8 +7,6 @@ import com.example.rodastech.entities.Client
 import com.example.rodastech.entities.Cloth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.tasks.await
 
 class ValidateFormViewModel : ViewModel(){
 
@@ -37,6 +33,7 @@ class ValidateFormViewModel : ViewModel(){
     val errorPostalAddress = MutableLiveData<String?>()
 
     val formularioValido = MutableLiveData<Boolean>()
+
 
 
     fun validarFormulario(name: String, desc: String, provider: String, color: String, width: String, long: String, initialStock: String, price: String) {
@@ -120,7 +117,6 @@ class ValidateFormViewModel : ViewModel(){
     }
     fun isValidPostalCode(postalCode : String): Boolean {
         val patron = Regex("^\\d{4}(-\\d{3})?$")
-//        return patron.matches(codigoPostal)
         if (postalCode.isNullOrEmpty()) {
             errorPostalAddress.value = "Campo obligatorio"
             return false
@@ -213,7 +209,7 @@ class ValidateFormViewModel : ViewModel(){
     }
 
     fun isValidCUIT(cuit: String): Boolean {
-        val cuitLimpio = cuit.replace("-", "") // Eliminar guiones si los hubiera
+        val cuitLimpio = cuit.replace("-", "")
         if (cuit.isNullOrEmpty()) {
             errorCuit.value = "Campo obligatorio"
             return false
@@ -221,10 +217,10 @@ class ValidateFormViewModel : ViewModel(){
 
         if (cuitLimpio.length != 11 || !cuitLimpio.all { it.isDigit() }) {
             errorCuit.value = "Formato incorrecto"
-            return false // Longitud incorrecta o contiene caracteres no numéricos
+            return false
         }
 
-        val factores = intArrayOf(5, 4, 3, 2, 7, 6, 5, 4, 3, 2) // Factores de multiplicación
+        val factores = intArrayOf(5, 4, 3, 2, 7, 6, 5, 4, 3, 2)
 
         var suma = 0
         for (i in 0 until 10) {
@@ -246,27 +242,6 @@ class ValidateFormViewModel : ViewModel(){
         else{
             errorCuit.value = "CUIT incorrecto"
             return false
-        }
-    }
-
-
-    suspend fun insertCloth() = coroutineScope {
-        try {
-            val insertMap = mapOf(
-                "id" to cloth.value?.id ,
-                "name" to cloth.value?.name.toString(),
-                "color" to cloth.value?.color.toString(),
-                "description" to cloth.value?.description.toString(),
-                "long" to cloth.value?.long,
-                "price" to cloth.value?.price,
-                "provider" to cloth.value?.provider.toString(),
-                "stockActual" to cloth.value?.stockActual,
-                "width" to cloth.value?.width
-            )
-            db.collection("cloths").add(insertMap).await()
-
-        } catch (e: Exception) {
-            Log.d("MHTEST", "EXCEPTION EN CREATE CLOTH VIEW MODEL ${e.message}")
         }
     }
 

@@ -46,7 +46,7 @@ class InfoPedido : Fragment() {
             binding.txtFechaSubT.text=pedido.fecha
             pedidosViewModel.getProductosPedidos(pedido)
         }catch (e: Exception){
-            Log.d("MHTEST", e.toString())
+            Log.d("RODASTECH", e.toString())
         }
 
         pedidosViewModel.productosPedidosSeleccionados.observe(viewLifecycleOwner){

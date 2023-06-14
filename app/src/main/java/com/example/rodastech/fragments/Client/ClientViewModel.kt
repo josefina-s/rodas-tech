@@ -41,7 +41,7 @@ class ClientViewModel : ViewModel() {
             val data = db.collection("clients").get().await()
             dbClientList=data.toObjects(Client::class.java)
         } catch (e: Exception) {
-            Log.d("MHTEST", "EXCEPTION EN LIST CLOTH VIEW MODEL ${e.message}")
+            Log.d("RODASTECH", "EXCEPTION EN LIST CLOTH VIEW MODEL ${e.message}")
         }
         return dbClientList
     }

@@ -94,7 +94,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginTop="290dp"
         android:layout_marginEnd="16dp"
-        app:cardBackgroundColor="#A9EF90"
+        app:cardBackgroundColor="#023E8A"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:text="Confirmar"
-            android:textAllCaps="false"
+            android:textAllCaps="true"
             android:textColor="#FFF" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -120,7 +120,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="290dp"
         android:layout_marginEnd="200dp"
-        app:cardBackgroundColor="#DD5050"
+        app:cardBackgroundColor="#F0F0F0"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -134,8 +134,8 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:text="Cancelar"
-            android:textAllCaps="false"
-            android:textColor="#FFF" />
+            android:textAllCaps="true"
+            android:textColor="#000000" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -147,8 +147,32 @@
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtErrorProductsOrder"
+        android:layout_width="320dp"
+        android:layout_height="22dp"
+        android:textColor="#DD5050"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387" />
+
+    <TextView
+        android:id="@+id/txtErrorClientOrder"
+        android:layout_width="317dp"
+        android:layout_height="27dp"
+        android:textColor="#DD5050"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.265" />
 
     <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabtn"

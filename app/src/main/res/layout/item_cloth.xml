@@ -39,19 +39,35 @@
             app:layout_constraintStart_toStartOf="@+id/txtName"
             app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
+<!--        <ImageButton-->
+<!--            android:id="@+id/imgBtnAddQuantity"-->
+<!--            android:layout_width="41dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:background="#00FFFFFF"-->
+<!--            android:tint="#3CFF10"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.745"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.482"-->
+<!--            app:srcCompat="@drawable/add_box" />-->
+
         <ImageButton
             android:id="@+id/imgBtnAddQuantity"
             android:layout_width="41dp"
             android:layout_height="40dp"
             android:background="#00FFFFFF"
-            android:tint="#3CFF10"
+            android:tint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.745"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.482"
-            app:srcCompat="@drawable/add_box" />
+            app:srcCompat="@drawable/agregartresdos" />
+
+
 
         <ImageButton
             android:id="@+id/imgBtnDetails"

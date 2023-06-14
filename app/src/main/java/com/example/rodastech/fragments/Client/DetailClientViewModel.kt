@@ -18,13 +18,13 @@ class DetailClientViewModel : ViewModel() {
         try {
             val clothQuery =
                 db.collection("clients").whereEqualTo("id", client.id.toString()).get().await()
-            Log.d("MHTEST", "ESTOY EN deleteClient")
+            Log.d("RODASTECH", "ESTOY EN deleteClient")
             for (dbClient in clothQuery) {
-                Log.d("MHTEST", "ESTOY EN for para deleteClient ${dbClient.id}")
+                Log.d("RODASTECH", "ESTOY EN for para deleteClient ${dbClient.id}")
                 db.collection("clients").document(dbClient.id).delete().await()
             }
         } catch (e: Exception) {
-            Log.d("MHTEST", "ESTOY EN exception del deleteClient ${e.message}")
+            Log.d("RODASTECH", "ESTOY EN exception del deleteClient ${e.message}")
         }
     }
 }

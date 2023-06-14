@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class Cloth( //mheredia 04052023 igualo campos al figma
+class Cloth(
     var id:String?="",
     var name: String?="",
     var description: String?="",

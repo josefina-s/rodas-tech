@@ -14,16 +14,31 @@
         android:layout_height="69dp">
 
 
+<!--        <TextView-->
+<!--            android:id="@+id/txtClientName"-->
+<!--            android:layout_width="255dp"-->
+<!--            android:layout_height="28dp"-->
+<!--            android:text="Cliente"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.178"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.487" />-->
+
         <TextView
             android:id="@+id/txtClientName"
-            android:layout_width="101dp"
-            android:layout_height="27dp"
-            android:text="Nombre"
-            android:textColor="#000000"
+            android:layout_width="182dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="20dp"
+            android:text="Cliente"
+            android:textColor="#060A18"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.049"
+            app:layout_constraintHorizontal_bias="0.078"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

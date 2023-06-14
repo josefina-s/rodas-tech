@@ -14,7 +14,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.rodastech.databinding.FragmentEditClientBinding
 import com.example.rodastech.entities.Client
-import com.example.rodastech.fragments.Cloth.ValidateFormViewModel
+import com.example.rodastech.fragments.ValidateFormViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
@@ -38,6 +38,8 @@ class EditClientFragment : Fragment() {
         binding.txtEditClientEmail.setText(client.email)
         binding.txtEditClientAddress.setText(client.address)
         binding.txtEditClientPostalAddress.setText(client.cp.toString())
+        binding.txtEditClientName.isEnabled=false
+        binding.txtEditClientCuit.isEnabled=false
         return binding.root
     }
 
@@ -74,9 +76,9 @@ class EditClientFragment : Fragment() {
                         client.address=binding.txtEditClientAddress.text.toString()
                         client.cp=Integer.parseInt(binding.txtEditClientPostalAddress.text.toString())
                         viewModel.updateClient(client)
-                        Log.d("MHTEST", "ESTOY EN EL TRUE del formulario valido en fragment Edit Client")
+                        Log.d("RODASTECH", "ESTOY EN EL TRUE del formulario valido en fragment Edit Client")
                         val snackBar= Snackbar.make(binding.root,"Se modificó correctamente el cliente ${client.name}", Snackbar.LENGTH_SHORT)
-                        snackBar.view.setBackgroundColor(Color.parseColor("#A9EF90"))
+                        snackBar.view.setBackgroundColor(Color.parseColor("#33363F"))
                         snackBar.show()
                         val navController = findNavController()
                         navController.popBackStack()
@@ -91,7 +93,7 @@ class EditClientFragment : Fragment() {
                         binding.txtEditClientAddress.text.toString(),
                         binding.txtEditClientPostalAddress.text.toString()
                     )
-                    Log.d("MHTEST", "ESTOY EN EL false del formulario valido en fragment Edit Client")
+                    Log.d("RODASTECH", "ESTOY EN EL false del formulario valido en fragment Edit Client")
                     val snackBar=Snackbar.make(binding.root,"ERROR:No se pudo modificar el cliente ${client.name}, revise los campos con errores", Snackbar.LENGTH_SHORT)
                     snackBar.view.setBackgroundColor(Color.parseColor("#DD5050"))
                     snackBar.show()

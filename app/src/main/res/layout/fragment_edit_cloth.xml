@@ -7,25 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Cloth.EditClothFragment">
 
+
+
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="237dp"
-        android:layout_height="33dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="EDITAR PRODUCTO"
+        android:text="Editar Producto"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="GUARDAR"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,10 +38,11 @@
 
     <EditText
         android:id="@+id/txtEditClothProvider"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Proveedor"
+        android:textColor="#000000"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +53,7 @@
 
     <TextView
         android:id="@+id/txtErrorClothProvider"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="#DD5050"
@@ -64,7 +66,7 @@
 
     <EditText
         android:id="@+id/txtEditClothLong"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Largo"
@@ -78,7 +80,7 @@
 
     <TextView
         android:id="@+id/txtErrorClothInitialLong"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="#DD5050"
@@ -91,7 +93,7 @@
 
     <EditText
         android:id="@+id/txtEditClothDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Descripción"
@@ -105,7 +107,7 @@
 
     <TextView
         android:id="@+id/txtErrorClothDesc"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="#DD5050"
@@ -118,7 +120,7 @@
 
     <EditText
         android:id="@+id/txtEditClothWidth"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Ancho"
@@ -132,7 +134,7 @@
 
     <TextView
         android:id="@+id/txtErrorClothWidth"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="#DD5050"
@@ -146,7 +148,7 @@
 
     <EditText
         android:id="@+id/txtEditClothStock"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Stock Mínimo"
@@ -160,7 +162,7 @@
 
     <TextView
         android:id="@+id/txtErrorClothInitialStock"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="#DD5050"
@@ -173,10 +175,11 @@
 
     <EditText
         android:id="@+id/txtEditClothName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Nombre Tela"
+        android:textColor="#000000"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +190,7 @@
 
     <TextView
         android:id="@+id/txtErrorNombre"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textAlignment="textStart"
@@ -201,7 +204,7 @@
 
     <EditText
         android:id="@+id/txtEditClothColor"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Color"
@@ -215,7 +218,7 @@
 
     <TextView
         android:id="@+id/txtErrorClothColor"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="#DD5050"
@@ -228,7 +231,7 @@
 
     <TextView
         android:id="@+id/txtErrorClothPrice"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="#DD5050"
@@ -241,7 +244,7 @@
 
     <EditText
         android:id="@+id/txtEditClothPrice"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Precio"
@@ -252,5 +255,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.759" />
+
+    <ImageView
+        android:id="@+id/iconEditCloth"
+        android:layout_width="30dp"
+        android:layout_height="26dp"
+        android:src="@drawable/documento"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

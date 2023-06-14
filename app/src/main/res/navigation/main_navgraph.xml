@@ -19,7 +19,7 @@
         android:id="@+id/loginActivity"
         android:name="com.example.rodastech.activities.LoginActivity"
         android:label="activity_login"
-        tools:layout="@layout/activity_login" />
+        tools:layout="@layout/activity_sign_in" />
     <fragment
         android:id="@+id/listClothFragment"
         android:name="com.example.rodastech.fragments.Cloth.ListClothFragment"
@@ -40,9 +40,7 @@
         <action
             android:id="@+id/action_detailClothFragment_to_editClothFragment"
             app:destination="@id/editClothFragment" />
-        <action
-            android:id="@+id/action_detailClothFragment_to_deleteClothFragment"
-            app:destination="@id/deleteClothFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/clientFragment"
@@ -75,15 +73,7 @@
         android:name="com.example.rodastech.fragments.Cloth.CreateClothFragment"
         android:label="fragment_create_cloth"
         tools:layout="@layout/fragment_create_cloth" />
-    <fragment
-        android:id="@+id/deleteClothFragment"
-        android:name="com.example.rodastech.fragments.Cloth.DeleteClothFragment"
-        android:label="fragment_delete_cloth"
-        tools:layout="@layout/fragment_delete_cloth" >
-        <argument
-            android:name="cloth"
-            app:argType="com.example.rodastech.entities.Cloth" />
-    </fragment>
+
     <fragment
         android:id="@+id/detailClientFragment"
         android:name="com.example.rodastech.fragments.Client.DetailClientFragment"
@@ -139,4 +129,17 @@
         android:label="fragment_generar_pedido"
         tools:layout="@layout/fragment_generar_pedido">
     </fragment>
+    <activity
+        android:id="@+id/signInActivity"
+        android:name="com.example.rodastech.activities.SignInActivity"
+        android:label="SignInActivity" />
+    <activity
+        android:id="@+id/signUpActivity"
+        android:name="com.example.rodastech.activities.SignUpActivity"
+        android:label="SignUpActivity" />
+    <activity
+        android:id="@+id/resetPassActivity"
+        android:name="com.example.rodastech.activities.ResetPassActivity"
+        android:label="activity_reset_pass2"
+        tools:layout="@layout/activity_reset_pass2" />
 </navigation>

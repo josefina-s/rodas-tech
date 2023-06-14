@@ -32,7 +32,7 @@ class CreateClothViewModel : ViewModel() {
             db.collection("cloths").add(insertMap).await()
 
         } catch (e: Exception) {
-            Log.d("MHTEST", "EXCEPTION EN CREATE CLOTH VIEW MODEL ${e.message}")
+            Log.d("RODASTECH", "EXCEPTION EN CREATE CLOTH VIEW MODEL ${e.message}")
         }
     }
 }

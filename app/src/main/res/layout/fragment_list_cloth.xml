@@ -8,16 +8,15 @@
     tools:context=".fragments.Cloth.ListClothFragment" >
 
 
-
-
     <SearchView
         android:id="@+id/searchCloth"
-        android:layout_width="258dp"
-        android:layout_height="45dp"
+        android:layout_width="202dp"
+        android:layout_height="42dp"
         android:layout_marginTop="44dp"
-        android:queryHint="nombre de la tela"
+        android:maxLength="35"
+        android:queryHint="tela"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,46 +46,52 @@
         app:layout_constraintVertical_bias="0.983"
         app:tint="@android:color/white" />
 
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-medium"
         android:text="Stock Actual"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btnLogout"
         android:layout_width="30dp"
         android:layout_height="29dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintHorizontal_bias="0.992"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029"
         app:srcCompat="@drawable/logout" />
 
     <ImageView
         android:id="@+id/iconListCloth"
         android:layout_width="30dp"
         android:layout_height="26dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/listaverificacion"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spClothList"
+        android:layout_width="204dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.988"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

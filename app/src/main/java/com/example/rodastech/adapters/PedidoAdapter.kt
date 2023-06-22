@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,11 @@ class PedidoAdapter(
         fun getCard() : CardView {
             return view.findViewById(R.id.cardPedido)
         }
+
+        fun getCardImgBtnDetails(): ImageButton {
+            val btnDetail : ImageButton = view.findViewById(R.id.btnOrderDetails)
+            return btnDetail
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PedidoHolder {
@@ -49,7 +55,11 @@ class PedidoAdapter(
     override fun onBindViewHolder(holder: PedidoHolder, position: Int) {
         pedidos[position].cliente?.let { holder.setClienteName(it) }
         pedidos[position].fecha?.let { holder.setFecha(it) }
-        holder.getCard().setOnClickListener {
+//        holder.getCard().setOnClickListener {
+//            onClick(position)
+//        }
+
+        holder.getCardImgBtnDetails().setOnClickListener {
             onClick(position)
         }
     }

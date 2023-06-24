@@ -1,5 +1,6 @@
 package com.example.rodastech.fragments.Report
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -13,8 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.rodastech.R
 import com.example.rodastech.entities.Cloth
 import com.example.rodastech.entities.ProductoPedido
-
-import com.example.rodastech.fragments.Cloth.ListClothFragmentDirections
 import com.example.rodastech.fragments.Cloth.ListClothViewModel
 import com.example.rodastech.fragments.Order.PedidosListViewModel
 import com.github.mikephil.charting.charts.BarChart
@@ -22,9 +21,11 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.coroutines.launch
+import java.util.*
 
 class DetailReportFragment : Fragment(), OnChartValueSelectedListener {
     private lateinit var viewModel: DetailReportViewModel
@@ -42,7 +43,7 @@ class DetailReportFragment : Fragment(), OnChartValueSelectedListener {
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_detail_report, container, false)
-        barChart = v.findViewById(R.id.chart)
+        barChart = v.findViewById(R.id.barChart)
         return v
     }
 
@@ -140,10 +141,63 @@ class DetailReportFragment : Fragment(), OnChartValueSelectedListener {
 
     private fun setupBarChart(entries: List<BarEntry>, label: String) {
         val barDataSet = BarDataSet(entries, label)
-        barDataSet.color = resources.getColor(R.color.purple_500)
+
+        // Configurar colores de las barras
+        val colors = mutableListOf<Int>()
+        if (label == "Telas por color") {
+            for (i in 0 until entries.size) {
+                val cloth = mutableCloths.getOrNull(i)
+                val color = getColorForCloth(cloth)
+                colors.add(color)
+            }
+        } else {
+            for (i in 0 until entries.size) {
+                val color = getRandomColor()
+                colors.add(color)
+            }
+        }
+        barDataSet.colors = colors
+
+        // Configurar etiquetas de las barras
+        barDataSet.valueTextSize = 12f
+        barDataSet.valueFormatter = object : ValueFormatter() {
+            override fun getBarLabel(barEntry: BarEntry): String {
+                return barEntry.y.toInt().toString() // Solo el número
+            }
+        }
+
         val barData = BarData(barDataSet)
         barChart.data = barData
+        barChart.animateY(1000) // Duración de la animación en milisegundos
+        barChart.animateXY(1000, 1000) // Duración de la animación en milisegundos para el eje X y el eje Y respectivamente
+        barChart.highlightValue(2f, 0, 500) // Resalta la barra con el valor x = 2, en el conjunto de datos 0, durante 500 milisegundos
+
+        barChart.invalidate()
+
     }
+
+
+    private fun getColorForCloth(cloth: Cloth?): Int {
+        // Asignar un color específico para cada tela según sus propiedades
+        return when (cloth?.color?.lowercase()) {
+            "rojo" -> Color.RED
+            "azul" -> Color.BLUE
+            "verde" -> Color.GREEN
+            "azul oscuro" -> Color.rgb(0, 91, 159)
+            "beige" -> Color.parseColor("#F5F5DC")
+            "blanco" ->Color.WHITE
+            "incoloro" ->Color.GRAY
+            // Agrega más casos según los colores disponibles
+            else -> getRandomColor()
+        }
+    }
+
+
+    private fun getRandomColor(): Int {
+        val random = Random()
+        return Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256))
+    }
+
     private fun getAllProductosPedidosAgrupados(listaProductosPedidos: MutableList<ProductoPedido>): MutableList<ProductoPedido> {
         val mapaProductosPedidos = mutableMapOf<String, Int>()
         for (pPedido in listaProductosPedidos) {

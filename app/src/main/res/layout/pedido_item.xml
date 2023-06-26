@@ -72,7 +72,7 @@
 
 
         <ImageButton
-            android:id="@+id/next"
+            android:id="@+id/btnOrderDetails"
             android:layout_width="45dp"
             android:layout_height="44dp"
             android:background="#00FFFFFF"

@@ -67,12 +67,25 @@ class ClothAdapter (
         }
         holder.getCardImgBtnAdd().setOnClickListener {
             onClick(position, "ADD")
-            Log.d("MHTEST","HOLA")
+
         }
         holder.getCardImgBtnDetails().setOnClickListener {
             onClick(position, "DETAILS")
         }
 
+    }
+
+    fun sortClothByActualStockDesc(){
+        this.clothList.sortByDescending {
+            it.stockActual
+        }
+        notifyDataSetChanged()
+    }
+    fun sortClothByActualStockAsc(){
+        this.clothList.sortBy {
+            it.stockActual
+        }
+        notifyDataSetChanged()
     }
 
     fun updateClothList(filteredCloths:MutableList<Cloth>){

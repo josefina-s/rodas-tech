@@ -91,7 +91,7 @@ class CreateClothFragment : Fragment() {
                             Log.d("RODASTECH", "ESTOY EN EL TRUE del formulario valido en fragment")
                             val snackBar = Snackbar.make(
                                 binding.root,
-                                "Se agregó correctamente el producto",
+                                "Se agregó correctamente el producto ${cloth.name}",
                                 Snackbar.LENGTH_SHORT
                             )
                             snackBar.view.setBackgroundColor(Color.parseColor("#33363F"))

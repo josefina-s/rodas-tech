@@ -79,7 +79,7 @@ class EditClothFragment : Fragment() {
                         cloth.price=Integer.parseInt(binding.txtEditClothPrice.text.toString())
                         viewModel.updateCloth(cloth)
                         Log.d("RODASTECH", "ESTOY EN EL TRUE del formulario valido en fragment")
-                        val snackBar=Snackbar.make(binding.root,"Se modificó correctamente el producto", Snackbar.LENGTH_SHORT)
+                        val snackBar=Snackbar.make(binding.root,"Se modificó correctamente el producto ${cloth.name}", Snackbar.LENGTH_SHORT)
                         snackBar.view.setBackgroundColor(Color.parseColor("#33363F"))
                         snackBar.show()
                         val navController = findNavController()

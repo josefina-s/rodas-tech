@@ -116,7 +116,7 @@ class GenerarPedido : Fragment() {
 
         binding.btnClearPedido.setOnClickListener {
             limpiarFormulario()
-
+            navController.popBackStack()
         }
 
     }
@@ -131,6 +131,7 @@ class GenerarPedido : Fragment() {
         binding.txtErrorProductsOrder.text = ""
         binding.txtErrorClientOrder.text = ""
         generarPedidoViewModel.limpiarPedido()
+
     }
 
     override fun onResume() {

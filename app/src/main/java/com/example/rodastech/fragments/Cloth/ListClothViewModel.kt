@@ -48,6 +48,7 @@ class ListClothViewModel : ViewModel() {
         } catch (e: Exception) {
             Log.d("RODASTECH", "EXCEPTION EN LIST CLOTH VIEW MODEL ${e.message}")
         }
+        dbClothList.sortBy { it.stockActual }
         return dbClothList
     }
 }

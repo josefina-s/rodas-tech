@@ -38,8 +38,6 @@ class DetailClothFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val navController = findNavController()
-
-
         binding.txtNombre.text=cloth.name
         binding.txtColor.text=cloth.color
         binding.txtAncho.text= cloth.width.toString()
